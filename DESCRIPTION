@@ -1,0 +1,33 @@
+Package: adRes
+Type: Package
+Title: Assessing whether phenotypic changes in response to climate are adaptive
+Version: 0.0.2.0001
+Authors@R: c(
+    person('Radchuk', 'Viktoriia', email = 'radchuk.victoria@gmail.com', role = c('aut', 'cre'),
+    comment = c(ORCID = "0000-0003-3072-0095")),
+    person('Courtiol', 'Alexandre', role = c('aut'), comment = c(ORCID = "0000-0003-0637-2959"))
+    )
+Maintainer: Viktoriia Radchuk <radchuk.victoria@gmail.com>
+Description: This R package aims at providing the data and documenting the 
+    analysis behind the results from the paper entitled "Animals respond to 
+    climate change by adaptive shifts in phenological traits" by Radchuk et al.
+    (in review). This package has not been conceived for general use. It serves 
+    to document the steps of our analysis.
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+Depends:
+    R (>= 2.10)
+Imports:
+    doSNOW,
+    foreach,
+    parallel,
+    spaMM (>= 2.4.92),
+    dplyr,
+    metafor,
+    binom,
+    magrittr
+Suggests:
+    openxlsx,
+    R.utils
+RoxygenNote: 6.1.1
