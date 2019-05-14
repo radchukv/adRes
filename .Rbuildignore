@@ -1,0 +1,15 @@
+^.*\.Rproj$
+^\.Rproj\.user$
+^data-raw$
+^examples$
+^figures$
+^tables
+^subl*
+^\./data/mod_T_prc\.rda$
+^\./data/mod_morph_T_prc_Taxon\.rda$
+^\./data/mod_phen_T_prc_Taxon\.rda$
+^\./data/mod_phen_T_prc\.rda$
+^\./data/mod_phen_T_prc_Type\.rda$
+^\./data/mod_morph_T_prc\.rda$
+^\./data/mod_morph_T_prc_Type\.rda$
+^\./data/mod_morph_T_prc_Therm\.rda$
