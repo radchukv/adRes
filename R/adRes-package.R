@@ -40,7 +40,7 @@
 #'  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #'  ####              Settings for the workflow              ####
 #'  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#'  nb_cores <- min(c(parallel::detectCores(), 10))
+#'  nb_cores <- 2
 #'  digit <- 3L
 #'  folder_name_for_figures <- 'figures'
 #'  dir.create(folder_name_for_figures) # directory used to save all plots
