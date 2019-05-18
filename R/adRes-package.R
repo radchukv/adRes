@@ -63,7 +63,6 @@
 #'                       fixed = NULL, digit = digit)
 #'
 #'  ## forest plot as in Fig. 2
-#'  pdf(file = paste0(folder_name_for_figures, '/T_Fig2.pdf'))
 #'  plot_T_cond1 <- plot_forest(meta_obj1 = mod_T_prcs$meta_res,
 #'                              meta_obj2 = NULL,
 #'                              list_extra_meta_obj =
@@ -79,29 +78,22 @@
 #'        at = -1, las = 2, cex = 0.9, col = 'black')
 #'  mtext('studies', side = 2, line = 3,
 #'        at = -2, las = 2, cex = 0.9, col = 'black')
-#'  dev.off()
 #'  }
 #'
 #'  ## plots of raw data and extracted slopes per study, as in Suppl. Fig. S11
-#'  pdf(paste0(folder_name_for_figures, '/T_year_raw_20_S11.pdf'),
-#'      height = 10, width = 7)
 #'  par(oma = c(2, 2, 0, 0),
 #'      mar = c(1, 2, 3, 1))
 #'  plot_raw(data = dat_Clim, temperature = TRUE,
 #'           precipitation = FALSE, phenology = TRUE, morphology = TRUE,
 #'           condition = '1', id_to_do = c(1:20))
-#'  dev.off()
 #'
 #'  ## in the full dataset there are 41 ids (21_41). In the publicly shared 36
-#'  pdf(paste0(folder_name_for_figures,'/T_year_raw_21_36_S11.pdf'),
-#'      height = 8, width = 7)
 #'  par(oma = c(2, 2, 0, 0),
 #'      mar = c(1, 2, 3, 1))
 #'  plot_raw(data = dat_Clim, temperature = TRUE,
 #'           precipitation = FALSE, phenology = TRUE,
 #'           morphology = TRUE, condition = '1',
 #'           id_to_do = c(21:36))
-#'  dev.off()
 #'
 #'  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #'  ####        Temperature: Condition 2, phenology         ####
@@ -193,7 +185,6 @@
 #'
 #'
 #'  ## forest plot as in Fig. 3
-#'  pdf(file = paste0(folder_name_for_figures, '/Traits_Fig3.pdf'))
 #'  plot_T_cond2 <- plot_forest(meta_obj1 = mod_phen_T_prcs$meta_res,
 #'                              meta_obj2 = mod_morph_T_prcs$meta_res,
 #'                              list_extra_meta_obj =
@@ -219,36 +210,26 @@
 #'        line = 4, las = 2, cex = 0.9, col = 'black')
 #'  mtext('PRC dataset ', at = -9, side = 2,
 #'        line = 4.3, las = 2, cex = 0.9, col = 'black')
-#'  dev.off()
 #'  }
 #'
 #'  ## plots of raw data and extracted slopes per study, as in Suppl. Fig. S12-S13
-#'  pdf(paste0(folder_name_for_figures, '/PhenTrait_20_S12.pdf'),
-#'      height = 10, width = 7)
 #'  par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
 #'  plot_raw(data = dat_Trait, temperature = TRUE,
 #'           precipitation = FALSE, phenology = TRUE,
 #'           morphology = FALSE, condition = '2',
 #'           id_to_do = c(1:20))
-#'  dev.off()
 #'
-#'  pdf(paste0(folder_name_for_figures, '/PhenTrait_21_38_S12.pdf'),
-#'      height = 10, width = 7)
 #'  par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
 #'  plot_raw(data = dat_Trait, temperature = TRUE,
 #'           precipitation = FALSE, phenology = TRUE,
 #'           morphology = FALSE, condition = '2',
 #'           id_to_do = c(21:38))
-#'  dev.off()
 #'
-#'  pdf(paste0(folder_name_for_figures, '/MorphTrait_4_S13.pdf'),
-#'      height = 3, width = 7)
 #'  par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
 #'  plot_raw(data = dat_Trait, temperature = TRUE,
 #'           precipitation = FALSE, phenology = FALSE,
 #'           morphology = TRUE, condition = '2',
 #'           id_to_do = c(1:4))
-#'  dev.off()
 #'
 #'  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #'  ####               Temperature: Condition 3             ####
@@ -291,7 +272,6 @@
 #'                                   fixed = 'GenerationLength_yr',
 #'                                   digit = digit)
 #'  ## forest plot as in Fig. 4
-#'  pdf(file = paste0(folder_name_for_figures, '/Sel_Fig4.pdf'))
 #'  plot_Sel_T_cond3 <- plot_forest(meta_obj1 = mod_Sel_T_phen$meta_res,
 #'                          meta_obj2 = mod_Sel_T_morph$meta_res,
 #'                          list_extra_meta_obj =
@@ -309,32 +289,22 @@
 #'        las = 2, cex = 0.85, col = 'black')
 #'  mtext('studies', side = 2, line = 4.5, at = -3.4,
 #'        las = 2, cex = 0.85, col = 'black')
-#'  dev.off()
 #'
 #'  ## plot of raw data for supplementary, as in S14-S15
-#'  pdf(paste0(folder_name_for_figures, '/Sel_PhenTrait_20_S14.pdf'),
-#'      height = 10, width = 7)
 #'  par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
 #'  plot_raw(data = dat_Sel, temperature = TRUE,
 #'           precipitation = FALSE, phenology = TRUE, morphology = FALSE,
 #'           condition = '3', id_to_do = c(1:20))
-#'  dev.off()
 #'
-#'  pdf(paste0(folder_name_for_figures, '/Sel_PhenTrait_21_36_S14.pdf'),
-#'      height = 8, width = 7)
 #'  par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
 #'  plot_raw(data = dat_Sel, temperature = TRUE,
 #'           precipitation = FALSE, phenology = TRUE, morphology = FALSE,
 #'           condition = '3', id_to_do = c(21:36))
-#'  dev.off()
 #'
-#'  pdf(paste0(folder_name_for_figures, '/Sel_MorphTrait_1_9_S15.pdf'),
-#'      height = 6.6, width = 7)
 #'  par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
 #'  plot_raw(data = dat_Sel, temperature = TRUE,
 #'           precipitation = FALSE, phenology = FALSE, morphology = TRUE,
 #'           condition = '3', id_to_do = c(1:9))
-#'  dev.off()
 #'
 #'  ## change of selection over years, phenology
 #'  mod_Sel_T_phen_year <- fit_all(data = dat_Sel, temperature = TRUE,
@@ -349,7 +319,6 @@
 #'                                 nb_cores = nb_cores, rand_trait = FALSE,
 #'                                 fixed = NULL, digit = digit)
 #'
-#'  pdf(file = paste0(folder_name_for_figures, '/Sel_OverYears_FigS7.pdf'))
 #'  plot_Sel_T_overYrs <- plot_forest(meta_obj1 = mod_Sel_T_phen_year$meta_res,
 #'                        meta_obj2 = mod_Sel_T_morph_year$meta_res,
 #'                        list_extra_meta_obj =
@@ -367,7 +336,6 @@
 #'        las = 2, cex = 0.8, col = 'black')
 #'  mtext('studies', side = 2, line = 6, at = -2.2,
 #'        las = 2, cex = 0.8, col = 'black')
-#'  dev.off()
 #'
 #'
 #'
@@ -400,8 +368,6 @@
 #'  binom.test(res_morph["TRUE"], sum(res_morph))
 #'
 #'
-#'  jpeg(filename = paste0(folder_name_for_figures, '/Fig5_Adapt.jpg'),
-#'      quality = 100, pointsize = 20, height = 860, width = 860)
 #'  mat = matrix(c(1, 2, 3, 3), 2,2, byrow = TRUE)
 #'  layout(mat, widths =  rep.int(1, ncol(mat)),
 #'         heights = rep.int(1, nrow(mat)), respect = TRUE)
@@ -435,7 +401,6 @@
 #'        y0 = bc_morphT[11, "lower"], y1 = bc_morphT[11, "upper"],
 #'        code = 3, angle = 90, col = "grey30", lwd = 4, length = 0.1)
 #' mtext('C)', side = 3, line = 0, adj = 0, cex = 2)
-#' dev.off()
 #'
 #'
 #'  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -494,7 +459,6 @@
 #'
 #'  mod_Adapt_T_Morph_Sel <- fit_meta(meta_data = dat_Adpt_Morph_Sel, fixed = NULL)
 #'
-#'  pdf(paste0(folder_name_for_figures,'/Test_Adapt_T_Sel_FigS8.pdf'))
 #'  plot_adapt_T_Sel <- plot_forest(meta_obj1 = mod_Adapt_T_Sel,
 #'                                  meta_obj2 = mod_Adapt_T_Morph_Sel,
 #'                                 list_extra_meta_obj =
@@ -510,7 +474,6 @@
 #'
 #'  mtext('the direction of climate-driven', side = 1, line = 4.2, cex = 1.3)
 #'  mtext('trait change', side = 1, line = 5.3, cex = 1.3)
-#'    dev.off()
 #'
 #'
 #'  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -578,8 +541,6 @@
 #'                                     digit = digit)
 #'
 #'  ## supplementary plot of all effects for each condition (as Fig. S3)
-#'  pdf(paste0(folder_name_for_figures, '/Precip_FigS3.pdf'),
-#'      height = 5.5, width = 16)
 #'  par(oma = c(2,1,1,0), mfrow = c(1,3))
 #'
 #'  ## panel a)
@@ -639,7 +600,6 @@
 #'  mtext('studies', side = 2, line = 8,
 #'        at = -3, las = 2, cex = 0.8, col = 'black')
 #'  mtext('c)', side = 2, at = 13.3, cex = 1.5, las = 2, line = 1.2)
-#'  dev.off()
 #'
 #'  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #'  ####                      Sensitivity analysis                           ####
@@ -797,8 +757,6 @@
 #' #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #'
 #' ## funnel plots for PRCS, as Supplementary Fig. S16
-#' pdf(paste0(folder_name_for_figures, '/FunnelPlots_PRCS_FigS16D.pdf'),
-#'     height = 7, width = 10)
 #' par(mfrow = c(2, 3))
 #' plot_funnel(meta_obj = mod_T_prcs)
 #' mtext('a)', line = 1, adj = 0, cex = 1.7)
@@ -815,13 +773,10 @@
 #' plot_funnel(meta_obj = mod_Sel_T_morph)
 #' mtext('e)', line = 1, adj = 0, cex = 1.7)
 #'
-#' dev.off()
 #'
 #' ## funnel plots for PRC, as Supplementary Fig. S17
 #' ## run only if the models were fit
 #'  \dontrun{
-#' pdf(paste0(folder_name_for_figures, '/FunnelPlots_PRC_FigS17.pdf'),
-#'     height = 7, width = 14)
 #' par(mfrow = c(1,3))
 #'
 #' plot_funnel(meta_obj = mod_T_prc)
@@ -832,7 +787,6 @@
 #'
 #' plot_funnel(meta_obj = mod_morph_T_prc)
 #' mtext('c)', line = 1, adj = 0, cex = 1.7)
-#' dev.off()
 #' }
 #'
 #' #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
