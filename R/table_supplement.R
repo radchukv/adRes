@@ -3,10 +3,10 @@
 #'
 #' @inheritParams parameters_definition
 #'
-#' @return Saves a table analogous to the Supplementary Table S1 to the specified location.
+#' @return Returns a table analogous to Supplementary Table S1.
 #' @export
 #'
-tab_efSizes_ST1 <- function(model_list, table_basename){
+tab_efSizes_ST1 <- function(model_list){
    data_EfSizes <-
      data.frame(Dataset = c('PRCS', rep(' ', 24), 'PRC', rep(' ', 25)),
      Response = c('Slope of temperature on years',
@@ -61,9 +61,10 @@ tab_efSizes_ST1 <- function(model_list, table_basename){
    data_EfSizes$Estimate <- get_stat_effsizes(list = model_list, stat = 'globslope')
    data_EfSizes$SE <- get_stat_effsizes(list = model_list, stat = 'globse')
 
-   save_xlsx(table = data_EfSizes,
-             table_basename = table_basename,
-             typeTab = 'efSizes')
+   # save_xlsx(table = data_EfSizes,
+   #           table_basename = table_basename,
+   #           typeTab = 'efSizes')
+   return(data_EfSizes)
    }
 
 
@@ -75,9 +76,9 @@ tab_efSizes_ST1 <- function(model_list, table_basename){
 #'
 #' @inheritParams parameters_definition
 #'
-#' @return Saves a table analogous to the Supplementary Table S2 to the specified location.
+#' @return Return a table analogous to Supplementary Table S2.
 #' @export
-tab_LRT_ST2 <- function(model_list, table_basename){
+tab_LRT_ST2 <- function(model_list){
  all_LRT <- get_stat_effsizes(list = model_list, stat = 'LRT')
  colnames(all_LRT) <- c('LRT', 'df', 'p')
 
@@ -129,8 +130,9 @@ tab_LRT_ST2 <- function(model_list, table_basename){
                   get_stat_effsizes(list = model_list, stat = 'RandStudy')
  data_LRT$'Random variance due to publication ID' <-
                   get_stat_effsizes(list = model_list, stat = 'RandPub')
- save_xlsx(table = data_LRT, table_basename = table_basename,
-          typeTab = 'LRT')
+ # save_xlsx(table = data_LRT, table_basename = table_basename,
+ #           typeTab = 'LRT')
+ return(data_LRT)
 }
 
 
@@ -139,10 +141,10 @@ tab_LRT_ST2 <- function(model_list, table_basename){
 #'
 #' @inheritParams parameters_definition
 #'
-#' @return Saves a table analogous to the Supplementary Table S4 to the specified location.
+#' @return Returns a table analogous to the Supplementary Table S4.
 #' @export
 #'
-tab_efSizes_ST4 <- function(model_list, table_basename){
+tab_efSizes_ST4 <- function(model_list){
 data_EfSizes_sens <- data.frame(Excluding = c('The study by Goodenough et al. (2011), outlier',
                                 rep(' ', 5),
                                 'The only study on mammal (Plard et al. 2014)', rep(' ', 5),
@@ -162,9 +164,11 @@ data_EfSizes_sens <- data.frame(Excluding = c('The study by Goodenough et al. (2
                                                  stat = 'globslope')
  data_EfSizes_sens$SE <- get_stat_effsizes(list = model_list,
                                            stat = 'globse')
- save_xlsx(table = data_EfSizes_sens,
-           table_basename = table_basename,
-           typeTab = 'efSizes' )
+ # save_xlsx(table = data_EfSizes_sens,
+ #           table_basename = table_basename,
+ #           typeTab = 'efSizes' )
+
+ return(data_EfSizes_sens)
 }
 
 
@@ -173,10 +177,10 @@ data_EfSizes_sens <- data.frame(Excluding = c('The study by Goodenough et al. (2
 #'
 #' @inheritParams parameters_definition
 #'
-#' @return Saves a table analogous to the Supplementary Table S5 to the specified location.
+#' @return Returns a table analogous to the Supplementary Table S5.
 #' @export
 
-tab_LRT_ST5 <- function(model_list, table_basename){
+tab_LRT_ST5 <- function(model_list){
  all_LRT_sens <- get_stat_effsizes(list = model_list, stat = 'LRT')
  colnames(all_LRT_sens) <- c('LRT', 'df', 'p')
  for (i in 1:nrow(all_LRT_sens)){
@@ -206,9 +210,10 @@ tab_LRT_ST5 <- function(model_list, table_basename){
                           get_stat_effsizes(list = model_list, stat = 'RandStudy')
  data_LRT_sens$'Random variance due to publication ID' <-
                           get_stat_effsizes(list = model_list, stat = 'RandPub')
- save_xlsx(table = data_LRT_sens,
-           table_basename = table_basename,
-           typeTab = 'LRT')
+ # save_xlsx(table = data_LRT_sens,
+ #           table_basename = table_basename,
+ #           typeTab = 'LRT')
+ return(data_LRT_sens)
 }
 
 #' Produces a table with the heterogeneity metrics for the specified list of models,
@@ -216,10 +221,10 @@ tab_LRT_ST5 <- function(model_list, table_basename){
 #'
 #' @inheritParams  parameters_definition
 #'
-#' @return Saves a table analogous to the Supplementary Table S7 to the specified location.
+#' @return Returns a table analogous to the Supplementary Table S7.
 #' @export
 
-tab_heterog <- function(model_list, table_basename){
+tab_heterog <- function(model_list){
  all_heterogen <- get_stat_effsizes(model_list, stat = 'heterogen')
  colnames(all_heterogen) <- c('I2', 'H2', 'Q', 'p')
  for (i in 1:nrow(all_heterogen)){
@@ -255,7 +260,8 @@ tab_heterog <- function(model_list, table_basename){
                               'Mean selection across phenological traits (presumably induced by temperature) after removing both the study on mammal (Plard et al. 2014) and an outlier (Goodenough et al. 2011)'))
  data_heterogen <- cbind(data_heterogen, all_heterogen)
 
- save_xlsx(table = data_heterogen,
-           table_basename = table_basename,
-           typeTab = 'heterog')
+ # save_xlsx(table = data_heterogen,
+ #           table_basename = table_basename,
+ #           typeTab = 'heterog')
+ return(data_heterogen)
 }

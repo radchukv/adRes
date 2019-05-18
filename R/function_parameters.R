@@ -68,7 +68,6 @@
 #' 'RandPub' for the random variance due to the publication ID, 'globslope' for global effect sizes,
 #' 'globse' for the standard errors of global effect sizes.
 #' @param table The dataframe to be exported as *.xlsx
-#' @param table_basename A string indicating the file name for the exported table
 #' @param temperature A boolean indicating if the temperature data should be extracted (default is FALSE).
 #' @param traits A boolean indicating whether the phenotypic traits are
 #'   used as response.
@@ -118,7 +117,6 @@ parameters_definition <- function(condition,
                                   sort,
                                   stat,
                                   table,
-                                  table_basename,
                                   temperature,
                                   traits,
                                   typeTab,

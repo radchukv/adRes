@@ -811,12 +811,10 @@
 #'                  mod_phen_Prec_prc_Taxon)
 #'
 #' ## A table with the effect sizes and their SE
-#' tab_efSizes_ST1(model_list = mod_list,
-#'                 table_basename = './tables/Supppl_Data1D')
+#' tab_efSizes_ST1(model_list = mod_list)
 #'
 #' ## A table with LRT statistics
-#' tab_LRT_ST2(model_list = mod_list,
-#'             table_basename = './tables/Supppl_Data2')
+#' tab_LRT_ST2(model_list = mod_list)
 #' }
 #' # a list of models
 #' mod_list_sens <- list(mod_phen_T_prcs_noOutlier,
@@ -832,14 +830,12 @@
 #'                       mod_Sel_T_phen_Fitn_noBoth,
 #'                       mod_Sel_T_phen_Gener_noBoth)
 #'
-#' tab_efSizes_ST4(model_list = mod_list_sens,
-#'             table_basename = './tables/EffectSizesSens_SupplTable2')
+#' tab_efSizes_ST4(model_list = mod_list_sens)
 #'
 #'
 #' ## a table for the LRT statistics and the variation due to random effects
 #' ## for the sensitivity analysis
-#' tab_LRT_ST5(model_list = mod_list_sens,
-#'             table_basename = './tables/LRTSens_SupplTable3')
+#' tab_LRT_ST5(model_list = mod_list_sens)
 #'
 #' ## a table for heterogeneity
 #' ## make sure all models are fitted before running this
@@ -852,8 +848,7 @@
 #'                       mod_Sel_T_phen_noOutlier, mod_phen_T_prcs_noMammal,
 #'                       mod_Sel_T_phen_noMammal, mod_phen_T_prcs_noBoth,
 #'                       mod_Sel_T_phen_noBoth)
-#' tab_heterog(model_list = mod_heterogen,
-#'             table_basename = './tables/Heterogen_SupplTable1')
+#' tab_heterog(model_list = mod_heterogen,)
 #' }
 #'
 
