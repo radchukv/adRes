@@ -40,7 +40,7 @@
 #'  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #'  ####              Settings for the workflow              ####
 #'  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-#'  nb_cores <- 2
+#'  nb_cores <- 2L ## increase the number for using more cores
 #'  digit <- 3L
 #'  folder_name_for_figures <- 'figures'
 #'  dir.create(folder_name_for_figures) # directory used to save all plots
