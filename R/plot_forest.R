@@ -170,15 +170,15 @@ plot_forest <- function(meta_obj1,
 #' @export
 #'
 
-plot_abund_effects <- function(meta_data, pdf_basename){
+plot_abund_effects <- function(meta_data){
   ID_order <- rev(paste0("id", as.numeric(as.character(meta_data$id))[
     order(meta_data$Species, meta_data$Trait_Categ_det)]))
   ID_ord <- match(ID_order, paste0("id", meta_data$id))
   labls <- paste0(meta_data$Trait_Categ_det, ', ', meta_data$id, ', ', meta_data$Species)
 
-  if (!is.null(pdf_basename)) {
-    grDevices::pdf(file = paste0(pdf_basename, '.pdf'))
-  }
+  # if (!is.null(pdf_basename)) {
+  #   grDevices::pdf(file = paste0(pdf_basename, '.pdf'))
+  # }
 
   graphics::par(mar = c(4, 16, 2, 2))
   graphics::plot(meta_data$slope_clim[ID_ord], 1:length(meta_data$slope_clim),
@@ -198,8 +198,8 @@ plot_abund_effects <- function(meta_data, pdf_basename){
         cex = 0.8, col = 'black')
   graphics::legend(x = -1.3, y = 24, col = c('blue', 'red', 'green'), pch = 19,
          legend = c('Temperature', 'Year', 'Abundance'))
-  if (!is.null(pdf_basename)) {
-    grDevices::dev.off()
-    message(paste0('a pdf named', paste0(pdf_basename, '.pdf'), ' has been created and saved!'))
-  }
+  # if (!is.null(pdf_basename)) {
+  #   grDevices::dev.off()
+  #   message(paste0('a pdf named', paste0(pdf_basename, '.pdf'), ' has been created and saved!'))
+  # }
 }

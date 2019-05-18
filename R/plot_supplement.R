@@ -76,11 +76,9 @@ plot_funnel <- function(meta_obj, model = 'rma'){
 #'                           phenology = TRUE, morphology = TRUE,
 #'                           condition = '1', nb_cores = nb_cores,
 #'                           rand_trait = FALSE, fixed = NULL, digit = digit)
-#'      plot_eff_dur_firstY(data = dat_Clim_prc, meta_obj = mod_T_prc,
-#'                          pdf_basename = NULL)
+#'      plot_eff_dur_firstY(data = dat_Clim_prc, meta_obj = mod_T_prc)
 #'  }
-plot_eff_dur_firstY <- function(data, meta_obj,
-                                pdf_basename){
+plot_eff_dur_firstY <- function(data, meta_obj){
   dat_T <- prepare_data(data, temperature = TRUE,
                         precipitation = FALSE,
                         phenology = TRUE,
@@ -118,9 +116,9 @@ plot_eff_dur_firstY <- function(data, meta_obj,
   }
 
   ## plot of effects vs. duration vs. first year
-  if (!is.null(pdf_basename)) {
-    grDevices::pdf(file = paste0(pdf_basename, '.pdf'), width = 13)
-  }
+  # if (!is.null(pdf_basename)) {
+  #   grDevices::pdf(file = paste0(pdf_basename, '.pdf'), width = 13)
+  # }
 
   graphics::par(mfrow = c(1,3), mar = c(5, 6, 2, 2))
 
@@ -156,11 +154,11 @@ plot_eff_dur_firstY <- function(data, meta_obj,
   graphics::mtext(paste0('Pearson r = ', round(corYearDur$estimate, 3)),
         side = 3, adj = 1, line = -2)
 
-  if (!is.null(pdf_basename)) {
-    grDevices::dev.off()
-    message(paste0('a pdf named', paste0(pdf_basename, '.pdf'),
-                   ' has been created and saved!'))
-  }
+  # if (!is.null(pdf_basename)) {
+  #   grDevices::dev.off()
+  #   message(paste0('a pdf named', paste0(pdf_basename, '.pdf'),
+  #                  ' has been created and saved!'))
+  # }
 }
 utils::globalVariables(names = c('.', 'year', 'FirstYear', 'id'))
 

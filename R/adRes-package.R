@@ -42,8 +42,6 @@
 #'  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #'  nb_cores <- 2L ## increase the number for using more cores
 #'  digit <- 3L
-#'  folder_name_for_figures <- 'figures'
-#'  dir.create(folder_name_for_figures) # directory used to save all plots
 #'
 #'  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #'  ####              Temperature: Condition 1              ####
@@ -747,9 +745,7 @@
 #'                                 fixed = NULL, digit = digit)
 #'
 #' ## plot as Supplementary Fig. S14 (for all slopes)
-#' plot_abund_effects(meta_data = EfSizes_phen_ab,
-#'                    pdf_basename = paste0(folder_name_for_figures,
-#'                   '/TraitsAbund_FigS6'))
+#' plot_abund_effects(meta_data = EfSizes_phen_ab)
 #'
 #'
 #' #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -796,9 +792,7 @@
 #'
 #' ## make sure the model is fitted before running this model
 #'  \dontrun{
-#'  plot_eff_dur_firstY(data = dat_Clim_prc, meta_obj = mod_T_prc,
-#'                      pdf_basename = paste0(folder_name_for_figures,
-#'                      '/Teff_NumYr_FigS5'))
+#'  plot_eff_dur_firstY(data = dat_Clim_prc, meta_obj = mod_T_prc)
 #'  }
 #'
 #' #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
