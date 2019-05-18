@@ -70,8 +70,7 @@
 #'                              labels = c(traits = FALSE,
 #'                                         fitness = FALSE,
 #'                                         country = TRUE,
-#'                                         authors = FALSE),
-#'                              pdf_basename = NULL)
+#'                                         authors = FALSE))
 #'  mtext('Across', side = 2, line = 3,
 #'        at = -1, las = 2, cex = 0.9, col = 'black')
 #'  mtext('studies', side = 2, line = 3,
@@ -198,8 +197,7 @@
 #'                              labels = c(traits = TRUE,
 #'                                         fitness = FALSE,
 #'                                         country = FALSE,
-#'                                         authors = FALSE),
-#'                              pdf_basename = NULL)
+#'                                         authors = FALSE))
 #'  mtext('Across studies, ', at = -0.6, side = 2,
 #'        line = 4, las = 2, cex = 0.9, col = 'black')
 #'  mtext('PRCS dataset', at = -2.2, side = 2,
@@ -281,8 +279,7 @@
 #'                          labels = c(traits = TRUE,
 #'                                     fitness = TRUE,
 #'                                     country = FALSE,
-#'                                     authors = FALSE),
-#'                          pdf_basename = NULL)
+#'                                     authors = FALSE))
 #'  mtext('Across', side = 2, line = 4.5, at = -2.2,
 #'        las = 2, cex = 0.85, col = 'black')
 #'  mtext('studies', side = 2, line = 4.5, at = -3.4,
@@ -328,8 +325,7 @@
 #'                        labels = c(traits = TRUE,
 #'                                   fitness = TRUE,
 #'                                   country = FALSE,
-#'                                   authors = FALSE),
-#'                        pdf_basename = NULL)
+#'                                   authors = FALSE))
 #'  mtext('Across', side = 2, line = 6, at = -1,
 #'        las = 2, cex = 0.8, col = 'black')
 #'  mtext('studies', side = 2, line = 6, at = -2.2,
@@ -468,7 +464,7 @@
 #'                                   fitness = TRUE,
 #'                                   country = FALSE,
 #'                                   authors = FALSE),
-#'                        pdf_basename = NULL, mar = c(7, 10, 2,2))
+#'                        mar = c(7, 10, 2,2))
 #'
 #'  mtext('the direction of climate-driven', side = 1, line = 4.2, cex = 1.3)
 #'  mtext('trait change', side = 1, line = 5.3, cex = 1.3)
@@ -553,7 +549,7 @@
 #'                                            fitness = FALSE,
 #'                                            country = TRUE,
 #'                                            authors = FALSE),
-#'                                 pdf_basename = NULL, mar = c(4, 9, 2, 2))
+#'                                 mar = c(4, 9, 2, 2))
 #'  mtext('Across', side = 2, line = 5,
 #'        at = -1.2, las = 2, cex = 0.9, col = 'black')
 #'  mtext('studies', side = 2, line = 5,
@@ -572,7 +568,7 @@
 #'                                     fitness = FALSE,
 #'                                     country = FALSE,
 #'                                     authors = FALSE),
-#'                          pdf_basename = NULL, mar = c(4, 9, 2, 2))
+#'                          mar = c(4, 9, 2, 2))
 #'  mtext('Across', side = 2, line = 6,
 #'        at = -1.2, las = 2, cex = 0.8, col = 'black')
 #'  mtext('studies', side = 2, line = 6,
@@ -592,7 +588,7 @@
 #'                                     fitness = TRUE,
 #'                                     country = FALSE,
 #'                                     authors = FALSE),
-#'                          pdf_basename = NULL, mar = c(4, 13, 2, 2))
+#'                          mar = c(4, 13, 2, 2))
 #'  mtext('Across', side = 2, line = 8,
 #'        at = -2, las = 2, cex = 0.8, col = 'black')
 #'  mtext('studies', side = 2, line = 8,

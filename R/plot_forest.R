@@ -50,8 +50,7 @@
 #'                     labels = c(traits = TRUE,
 #'                                fitness = TRUE,
 #'                                country = TRUE,
-#'                                authors = TRUE),
-#'                     pdf_basename = 'test')
+#'                                authors = TRUE))
 #'
 plot_forest <- function(meta_obj1,
                         meta_obj2 = NULL,
@@ -62,7 +61,6 @@ plot_forest <- function(meta_obj1,
                                    fitness = TRUE,
                                    country = TRUE,
                                    authors = TRUE),
-                        pdf_basename = NULL,
                         mar = c(4, 10, 2, 2)) {
 
   ## prepare labels (note: labels are sorted by the function)
@@ -103,9 +101,9 @@ plot_forest <- function(meta_obj1,
   }
 
   ## start pdf if name of file defined
-  if (!is.null(pdf_basename)) {
-    grDevices::pdf(file = paste0(pdf_basename, '.pdf'))
-  }
+  # if (!is.null(pdf_basename)) {
+  #   grDevices::pdf(file = paste0(pdf_basename, '.pdf'))
+  # }
 
   graphics::par(mar = mar)
   ## drawing the empty plot
@@ -151,10 +149,10 @@ plot_forest <- function(meta_obj1,
   }
 
   ## start pdf if name of file defined
-  if (!is.null(pdf_basename)) {
-    grDevices::dev.off()
-    message(paste0('a pdf named', paste0(pdf_basename, '.pdf'), ' has been created and saved!'))
-  }
+  # if (!is.null(pdf_basename)) {
+  #   grDevices::dev.off()
+  #   message(paste0('a pdf named', paste0(pdf_basename, '.pdf'), ' has been created and saved!'))
+  # }
 
   return(invisible(data_plot))
 }

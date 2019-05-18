@@ -52,8 +52,6 @@
 #' @param morphology A boolean indicating if the morphological data should be extracted (default is FALSE).
 #' @param nb_cores An integer indicating how many cores should be used for assessing the LRT by
 #'   bootstrap (see spaMM documentation for more details).
-#' @param pdf_basename A character specifying the name of the .pdf for
-#' the produced plot.
 #' @param phenological A boolean indicating whether the plot for phenological traits should be produced (default is TRUE).
 #' @param phenology A boolean indicating if the phenological data should be extracted (default is FALSE).
 #' @param precipitation A boolean indicating if the precipitation data should be extracted (default is FALSE).
@@ -110,7 +108,6 @@ parameters_definition <- function(condition,
                                   mod_sel,
                                   morphology,
                                   nb_cores,
-                                  pdf_basename,
                                   phenological,
                                   phenology,
                                   precipitation,
