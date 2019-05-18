@@ -56,16 +56,11 @@
 #'                        fixed = NULL, digit = digit)
 #'  ## for PRC
 #'  \dontrun{
-#'    if (file.exists('./data/mod_T_prc.rda')) {
-#'      load('./data/mod_T_prc.rda')
-#'    } else {
-#'      mod_T_prc <- fit_all(data = dat_Clim_prc, temperature = TRUE,
-#'                           precipitation = FALSE, phenology = TRUE,
-#'                           morphology = TRUE, condition = '1',
-#'                           nb_cores = nb_cores, rand_trait = FALSE,
-#'                           fixed = NULL, digit = digit)
-#'      save(mod_T_prc, file = './data/mod_T_prc.rda')
-#'    }
+#'  mod_T_prc <- fit_all(data = dat_Clim_prc, temperature = TRUE,
+#'                       precipitation = FALSE, phenology = TRUE,
+#'                       morphology = TRUE, condition = '1',
+#'                       nb_cores = nb_cores, rand_trait = FALSE,
+#'                       fixed = NULL, digit = digit)
 #'
 #'  ## forest plot as in Fig. 2
 #'  pdf(file = paste0(folder_name_for_figures, '/T_Fig2.pdf'))
@@ -126,45 +121,27 @@
 #'                                  digit = digit)
 #'  ## for PRC
 #'  \dontrun{
-#'    if (file.exists('./data/mod_phen_T_prc.rda')) {
-#'      load('./data/mod_phen_T_prc.rda')
-#'    } else {
-#'      mod_phen_T_prc <- fit_all(data = dat_Trait_prc,
-#'                                temperature = TRUE, precipitation = FALSE,
-#'                                phenology = TRUE, morphology = FALSE,
-#'                                condition = '2', nb_cores = nb_cores,
-#'                                rand_trait = FALSE, fixed = NULL,
-#'                                digit = digit)
-#'      save(mod_phen_T_prc, file = './data/mod_phen_T_prc.rda',
-#'           compress = 'xz')
-#'    }
+#'  mod_phen_T_prc <- fit_all(data = dat_Trait_prc,
+#'                            temperature = TRUE, precipitation = FALSE,
+#'                            phenology = TRUE, morphology = FALSE,
+#'                            condition = '2', nb_cores = nb_cores,
+#'                            rand_trait = FALSE, fixed = NULL,
+#'                            digit = digit)
 #'
-#'    ## fixed effects
-#'    if (file.exists('./data/mod_phen_T_prc_Type.rda')) {
-#'      load('./data/mod_phen_T_prc_Type.rda')
-#'    } else {
-#'      mod_phen_T_prc_Type <- fit_all(data = dat_Trait_prc,
-#'                                     temperature = TRUE, precipitation = FALSE,
-#'                                     phenology = TRUE, morphology = FALSE,
-#'                                     condition = '2', nb_cores = nb_cores,
-#'                                     rand_trait = FALSE, fixed = 'Trait_Cat',
-#'                                     digit = digit)
-#'      save(mod_phen_T_prc_Type, file = './data/mod_phen_T_prc_Type.rda',
-#'          compress = 'xz')
-#'    }
+#'  ## fixed effects
+#'  mod_phen_T_prc_Type <- fit_all(data = dat_Trait_prc,
+#'                                 temperature = TRUE, precipitation = FALSE,
+#'                                 phenology = TRUE, morphology = FALSE,
+#'                                 condition = '2', nb_cores = nb_cores,
+#'                                 rand_trait = FALSE, fixed = 'Trait_Cat',
+#'                                 digit = digit)
 #'
-#'    if (file.exists('./data/mod_phen_T_prc_Taxon.rda')) {
-#'      load('./data/mod_phen_T_prc_Taxon.rda')
-#'    } else {
-#'      mod_phen_T_prc_Taxon <- fit_all(data = dat_Trait_prc,
-#'                                      temperature = TRUE, precipitation = FALSE,
-#'                                      phenology = TRUE, morphology = FALSE,
-#'                                      condition = '2', nb_cores = nb_cores,
-#'                                      rand_trait = FALSE, fixed = 'Taxon',
-#'                                      digit = digit)
-#'      save(mod_phen_T_prc_Taxon, file = './data/mod_phen_T_prc_Taxon.rda',
-#'           compress = 'xz')
-#'    }
+#'  mod_phen_T_prc_Taxon <- fit_all(data = dat_Trait_prc,
+#'                                  temperature = TRUE, precipitation = FALSE,
+#'                                  phenology = TRUE, morphology = FALSE,
+#'                                  condition = '2', nb_cores = nb_cores,
+#'                                  rand_trait = FALSE, fixed = 'Taxon',
+#'                                  digit = digit)
 #'  }
 #'
 #'  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -185,58 +162,34 @@
 #'                                   digit = digit)
 #'  ## for PRC
 #'  \dontrun{
-#'    if (file.exists('./data/mod_morph_T_prc.rda')) {
-#'      load('./data/mod_morph_T_prc.rda')
-#'    } else {
-#'      mod_morph_T_prc <- fit_all(data = dat_Trait_prc,
-#'                                 temperature = TRUE, precipitation = FALSE,
-#'                                 phenology = FALSE, morphology = TRUE,
-#'                                 condition = '2', nb_cores = nb_cores,
-#'                                 rand_trait = FALSE, fixed = NULL,
-#'                                 digit = digit)
-#'      save(mod_morph_T_prc, file = './data/mod_morph_T_prc.rda',
-#'           compress = 'xz')
-#'    }
+#'    mod_morph_T_prc <- fit_all(data = dat_Trait_prc,
+#'                               temperature = TRUE, precipitation = FALSE,
+#'                               phenology = FALSE, morphology = TRUE,
+#'                               condition = '2', nb_cores = nb_cores,
+#'                               rand_trait = FALSE, fixed = NULL,
+#'                               digit = digit)
 #'
 #'    ## fixed effects
-#'    if (file.exists('./data/mod_morph_T_prc_Type.rda')) {
-#'      load('./data/mod_morph_T_prc_Type.rda')
-#'    } else {
-#'      mod_morph_T_prc_Type <- fit_all(data = dat_Trait_prc,
-#'                                      temperature = TRUE, precipitation = FALSE,
-#'                                      phenology = FALSE, morphology = TRUE,
-#'                                      condition = '2', nb_cores = nb_cores,
-#'                                      rand_trait = FALSE, fixed = 'Morph_type',
-#'                                      digit = digit)
-#'      save(mod_morph_T_prc_Type, file = './data/mod_morph_T_prc_Type.rda',
-#'           compress = 'xz')
-#'    }
+#'    mod_morph_T_prc_Type <- fit_all(data = dat_Trait_prc,
+#'                                    temperature = TRUE, precipitation = FALSE,
+#'                                    phenology = FALSE, morphology = TRUE,
+#'                                    condition = '2', nb_cores = nb_cores,
+#'                                    rand_trait = FALSE, fixed = 'Morph_type',
+#'                                    digit = digit)
 #'
-#'    if (file.exists('./data/mod_morph_T_prc_Taxon.rda')) {
-#'      load('./data/mod_morph_T_prc_Taxon.rda')
-#'    } else {
-#'      mod_morph_T_prc_Taxon <- fit_all(data = dat_Trait_prc,
-#'                                       temperature = TRUE, precipitation = FALSE,
-#'                                       phenology = FALSE, morphology = TRUE,
-#'                                       condition = '2', nb_cores = nb_cores,
-#'                                       rand_trait = FALSE, fixed = 'Taxon',
-#'                                       digit = digit)
-#'      save(mod_morph_T_prc_Taxon, file = './data/mod_morph_T_prc_Taxon.rda',
-#'           compress = 'xz')
-#'    }
+#'    mod_morph_T_prc_Taxon <- fit_all(data = dat_Trait_prc,
+#'                                     temperature = TRUE, precipitation = FALSE,
+#'                                     phenology = FALSE, morphology = TRUE,
+#'                                     condition = '2', nb_cores = nb_cores,
+#'                                     rand_trait = FALSE, fixed = 'Taxon',
+#'                                     digit = digit)
 #'
-#'    if (file.exists('./data/mod_morph_T_prc_Therm.rda')) {
-#'      load('./data/mod_morph_T_prc_Therm.rda')
-#'    } else {
-#'      mod_morph_T_prc_Therm <- fit_all(data = dat_Trait_prc,
-#'                                       temperature = TRUE, precipitation = FALSE,
-#'                                       phenology = FALSE, morphology = TRUE,
-#'                                       condition = '2', nb_cores = nb_cores,
-#'                                       rand_trait = FALSE, fixed = 'Blood',
-#'                                       digit = digit)
-#'      save(mod_morph_T_prc_Therm, file = './data/mod_morph_T_prc_Therm.rda',
-#'           compress = 'xz')
-#'   }
+#'    mod_morph_T_prc_Therm <- fit_all(data = dat_Trait_prc,
+#'                                     temperature = TRUE, precipitation = FALSE,
+#'                                     phenology = FALSE, morphology = TRUE,
+#'                                     condition = '2', nb_cores = nb_cores,
+#'                                     rand_trait = FALSE, fixed = 'Blood',
+#'                                     digit = digit)
 #'
 #'
 #'  ## forest plot as in Fig. 3
