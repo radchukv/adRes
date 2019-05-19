@@ -87,9 +87,9 @@ plot_raw <- function(data, temperature = FALSE,
     ylab <- 'Selection differential'
   }
 
-  if (nrow(mat) <= 5) {
-    xline <- -3} else {
-      xline <- 1}
+  #if (nrow(mat) <= 5) {
+  #  xline <- -3} else {
+      xline <- 1#}
   graphics::mtext(xlab, side = 1, line = xline, outer = TRUE)
   graphics::mtext(ylab, side = 2, line = 0, outer = TRUE, las = 0)
 }
