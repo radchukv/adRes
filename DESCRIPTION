@@ -1,7 +1,7 @@
 Package: adRes
 Type: Package
 Title: Assessing whether phenotypic changes in response to climate are adaptive
-Version: 0.0.2.0001
+Version: 1.0.0
 Authors@R: c(
     person('Viktoriia', 'Radchuk', email = 'radchuk.victoria@gmail.com', role = c('aut', 'cre'),
     comment = c(ORCID = "0000-0003-3072-0095")),
