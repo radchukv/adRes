@@ -26,7 +26,7 @@
 #' in the paper.
 #'
 #' @name adRes-package
-#' @aliases adRes-package adres
+#' @aliases adRes-package adRes
 #' @docType package
 #'
 #' @importFrom dplyr %>%
