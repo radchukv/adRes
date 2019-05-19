@@ -1,8 +1,8 @@
 #' Assessing whether phenotypic changes in response to climate are adaptive
 #'
 #' This R package aims at providing the data and documenting the analysis behind
-#' the results from the paper entitled "Animals respond to climate change by
-#' adaptive shifts in phenological traits" by Radchuk et al. (in review).
+#' the results from the paper entitled 'Adaptive responses of animals to climate
+#' change are most likely insufficient' by Radchuk et al. Nature Communications (2019).
 #'
 #' This package has not been conceived for general use!
 #'
@@ -31,8 +31,8 @@
 #' @importFrom dplyr %>%
 #'
 #' @references
-#' Radchuk et al. (2018) Animals respond to climate change by adaptive shifts in
-#' phenological traits. In review.
+#' Radchuk et al. (2019) Adaptive responses of animals to climate change
+#' are most likely insufficient". Nature Communications.
 #'
 #' @keywords package
 #'
@@ -79,14 +79,12 @@
 #'
 #'  ## plots of raw data and extracted slopes per study, as in Suppl. Fig. S11
 #'  par(oma = c(2, 2, 0, 0),
-#'      mar = c(1, 2, 3, 1))
 #'  plot_raw(data = dat_Clim, temperature = TRUE,
 #'           precipitation = FALSE, phenology = TRUE, morphology = TRUE,
 #'           condition = '1', id_to_do = c(1:20))
 #'
 #'  ## in the full dataset there are 41 ids (21_41). In the publicly shared 36
 #'  par(oma = c(2, 2, 0, 0),
-#'      mar = c(1, 2, 3, 1))
 #'  plot_raw(data = dat_Clim, temperature = TRUE,
 #'           precipitation = FALSE, phenology = TRUE,
 #'           morphology = TRUE, condition = '1',

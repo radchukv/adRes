@@ -9,10 +9,10 @@ Authors@R: c(
     )
 Maintainer: Viktoriia Radchuk <radchuk.victoria@gmail.com>
 Description: This R package aims at providing the data and documenting the 
-    analysis behind the results from the paper entitled "Animals respond to 
-    climate change by adaptive shifts in phenological traits" by Radchuk et al.
-    (in review). This package has not been conceived for general use. It serves 
-    to document the steps of our analysis.
+    analysis behind the results from the paper entitled "Adaptive responses of 
+    animals to climate change are most likely insufficient" by Radchuk et al.
+    Nature Communications (2019). This package has not been conceived for 
+    general use. It serves to document the steps of our analysis.
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true

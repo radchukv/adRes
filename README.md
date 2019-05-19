@@ -1,6 +1,7 @@
 # adRes
 
-The goal of adRes package is to provide the data and the exact workflow required to reproduce the analyses for the manuscript 'Assessing whether phenotypic changes in response to climate are adaptive' by Radchuk et al. (in revision). Only the data whose dataholders agreed to sharing their data could be made available. Therefore, the data distributed with the package is a subset of the complete dataset used for the manuscript.
+The goal of adRes package is to provide the data and the exact workflow required to reproduce the analyses for the manuscript 'Adaptive responses of animals to climate change are most likely insufficient' by Radchuk et al.
+Nature Communications (2019)'. Only the data whose dataholders agreed to sharing their data could be made available. Therefore, the data distributed with the package is a subset of the complete dataset used for the manuscript.
 
 The package was conceived to document the analyses presented in the above-mentioned paper. Therefore, the package will only be updated if necessary to keep compatibility with other packages, so that the code represented here works well.
 
