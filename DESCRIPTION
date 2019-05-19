@@ -3,11 +3,10 @@ Type: Package
 Title: Assessing whether phenotypic changes in response to climate are adaptive
 Version: 0.0.2.0001
 Authors@R: c(
-    person('Radchuk', 'Viktoriia', email = 'radchuk.victoria@gmail.com', role = c('aut', 'cre'),
+    person('Viktoriia', 'Radchuk', email = 'radchuk.victoria@gmail.com', role = c('aut', 'cre'),
     comment = c(ORCID = "0000-0003-3072-0095")),
-    person('Courtiol', 'Alexandre', role = c('aut'), comment = c(ORCID = "0000-0003-0637-2959"))
+    person('Alexandre', 'Courtiol', role = c('aut'), comment = c(ORCID = "0000-0003-0637-2959"))
     )
-Maintainer: Viktoriia Radchuk <radchuk.victoria@gmail.com>
 Description: This R package aims at providing the data and documenting the 
     analysis behind the results from the paper entitled "Adaptive responses of 
     animals to climate change are most likely insufficient" by Radchuk et al.
