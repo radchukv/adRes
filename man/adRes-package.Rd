@@ -3,7 +3,7 @@
 \docType{package}
 \name{adRes-package}
 \alias{adRes-package}
-\alias{adres}
+\alias{adRes}
 \title{Assessing whether phenotypic changes in response to climate are adaptive}
 \description{
 This R package aims at providing the data and documenting the analysis behind
