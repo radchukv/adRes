@@ -429,7 +429,7 @@ prepare_slopes <- function(meta_obj1 = NULL,
 
   ## slope_PRC_Phen
   slope_PRC_Phen <- function(meta_obj) {
-    if (PRC(meta_obj) && unique(meta_obj$meta_data$Trait_Categ) == 'Phenological' &&
+    if (PRC(meta_obj) && 'Phenological' %in% unique(meta_obj$meta_data$Trait_Categ) &&
         meta_obj$meta_data$condition[1] != 1 &&
         get_predictors(meta_obj) == '1') {
       return(list(extract_global_slopes(meta_obj, label = 'Phenological')))
@@ -443,7 +443,7 @@ prepare_slopes <- function(meta_obj1 = NULL,
 
   ## slope_PRC_Morph
   slope_PRC_Morph <- function(meta_obj) {
-    if (PRC(meta_obj) && unique(meta_obj$meta_data$Trait_Categ) == 'Morphological' &&
+    if (PRC(meta_obj) && 'Morphological' %in% unique(meta_obj$meta_data$Trait_Categ) &&
         meta_obj$meta_data$condition[1] != 1 &&
         get_predictors(meta_obj) == '1') {
       return(list(extract_global_slopes(meta_obj, label = 'Morphological')))
