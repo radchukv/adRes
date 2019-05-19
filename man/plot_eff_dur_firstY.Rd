@@ -5,7 +5,7 @@
 \title{Plots slopes of temperature vs. the duration of the studies
 and vs. the first year in time series}
 \usage{
-plot_eff_dur_firstY(data, meta_obj, pdf_basename)
+plot_eff_dur_firstY(data, meta_obj)
 }
 \arguments{
 \item{data}{A dataframe containing per each study the time series of relevant variables
@@ -13,9 +13,6 @@ plot_eff_dur_firstY(data, meta_obj, pdf_basename)
 to be analyzed.}
 
 \item{meta_obj}{A fitted meta-analytical model object.}
-
-\item{pdf_basename}{A character specifying the name of the .pdf for
-the produced plot.}
 }
 \value{
 Plots three plots: 1. the effect of year on temperature vs
@@ -34,7 +31,6 @@ and vs. the first year in time series
                           phenology = TRUE, morphology = TRUE,
                           condition = '1', nb_cores = nb_cores,
                           rand_trait = FALSE, fixed = NULL, digit = digit)
-     plot_eff_dur_firstY(data = dat_Clim_prc, meta_obj = mod_T_prc,
-                         pdf_basename = NULL)
+     plot_eff_dur_firstY(data = dat_Clim_prc, meta_obj = mod_T_prc)
  }
 }

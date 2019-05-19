@@ -5,14 +5,11 @@
 \title{Produce a forest plot, which for each study shows the effect sizes for
  climatic factor, abundance and year}
 \usage{
-plot_abund_effects(meta_data, pdf_basename)
+plot_abund_effects(meta_data)
 }
 \arguments{
 \item{meta_data}{A dataframe with rows representing records per studies,
 including the effect sizes and required fixed and random effects.}
-
-\item{pdf_basename}{A character specifying the name of the .pdf for
-the produced plot.}
 }
 \value{
 Plots a forest plot that shows for each study the effect sizes

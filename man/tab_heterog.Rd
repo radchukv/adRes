@@ -5,15 +5,13 @@
 \title{Produces a table with the heterogeneity metrics for the specified list of models,
 this table is analogous to the Supplementary Table S7.}
 \usage{
-tab_heterog(model_list, table_basename)
+tab_heterog(model_list)
 }
 \arguments{
 \item{model_list}{A list of the models from which to extract the summary statistics for the table.}
-
-\item{table_basename}{A string indicating the file name for the exported table}
 }
 \value{
-Saves a table analogous to the Supplementary Table S7 to the specified location.
+Returns a table analogous to the Supplementary Table S7.
 }
 \description{
 Produces a table with the heterogeneity metrics for the specified list of models,

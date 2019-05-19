@@ -5,15 +5,13 @@
 \title{Produces a table with summary statistics for the models conducted
 for sensitivity analysis, as in Supplementary Table S4}
 \usage{
-tab_efSizes_ST4(model_list, table_basename)
+tab_efSizes_ST4(model_list)
 }
 \arguments{
 \item{model_list}{A list of the models from which to extract the summary statistics for the table.}
-
-\item{table_basename}{A string indicating the file name for the exported table}
 }
 \value{
-Saves a table analogous to the Supplementary Table S4 to the specified location.
+Returns a table analogous to the Supplementary Table S4.
 }
 \description{
 Produces a table with summary statistics for the models conducted

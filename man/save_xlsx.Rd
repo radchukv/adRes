@@ -9,7 +9,7 @@ save_xlsx(table, table_basename, first_column_name = NULL, typeTab)
 \arguments{
 \item{table}{The dataframe to be exported as *.xlsx}
 
-\item{table_basename}{A string indicating the file name for the exported table}
+\item{table_basename}{A string indicating the base name for the file to be created.}
 
 \item{first_column_name}{A string indicating the name of the first column which is taken from the row names of the table}
 

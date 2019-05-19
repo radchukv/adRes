@@ -5,15 +5,13 @@
 \title{Produces a table with LRT statistics and variation due to random effects
 for the specified list of models, as in Supplementary Table S2}
 \usage{
-tab_LRT_ST2(model_list, table_basename)
+tab_LRT_ST2(model_list)
 }
 \arguments{
 \item{model_list}{A list of the models from which to extract the summary statistics for the table.}
-
-\item{table_basename}{A string indicating the file name for the exported table}
 }
 \value{
-Saves a table analogous to the Supplementary Table S2 to the specified location.
+Return a table analogous to Supplementary Table S2.
 }
 \description{
 Produces a table with LRT statistics and variation due to random effects

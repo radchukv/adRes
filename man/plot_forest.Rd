@@ -8,7 +8,7 @@ effects for both PRCS and PRC datasets}
 plot_forest(meta_obj1, meta_obj2 = NULL, list_extra_meta_obj = NULL,
   sort = c("Species", "Study_Authors", "Fitness_Categ"),
   increasing = TRUE, labels = c(traits = TRUE, fitness = TRUE, country
-  = TRUE, authors = TRUE), pdf_basename = NULL, mar = c(4, 10, 2, 2))
+  = TRUE, authors = TRUE), mar = c(4, 10, 2, 2))
 }
 \arguments{
 \item{meta_obj1}{A fitted meta-analytical model object whose global slopes and per-study effect
@@ -27,9 +27,6 @@ in increasing (TRUE) or decreasing (FALSE) order.}
 
 \item{labels}{A vector specifying what should be used as labels for each study.
 See Details for kinds of labels available.}
-
-\item{pdf_basename}{A character specifying the name of the .pdf for
-the produced plot.}
 
 \item{mar}{A vector specifying the plot margins, analogously to \code{\link[graphics]{par}}.}
 }
@@ -81,7 +78,6 @@ test <- plot_forest(meta_obj1 = meta_Trait_phen$meta_res,
                     labels = c(traits = TRUE,
                                fitness = TRUE,
                                country = TRUE,
-                               authors = TRUE),
-                    pdf_basename = 'test')
+                               authors = TRUE))
 
 }

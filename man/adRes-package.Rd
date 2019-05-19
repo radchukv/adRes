@@ -7,8 +7,9 @@
 \title{Assessing whether phenotypic changes in response to climate are adaptive}
 \description{
 This R package aims at providing the data and documenting the analysis behind
-the results from the paper entitled "Animals respond to climate change by
-adaptive shifts in phenological traits" by Radchuk et al. (in review).
+the results from the paper entitled 'Adaptive responses of animals to climate
+change are most likely insufficient' by Radchuk et al. Nature Communications
+(2019).
 }
 \details{
 This package has not been conceived for general use!
@@ -35,10 +36,11 @@ in the paper.
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
  ####              Settings for the workflow              ####
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
- nb_cores <- min(c(parallel::detectCores(), 10))
+ nb_cores <- 2L ## increase the number for using more cores
  digit <- 3L
- folder_name_for_figures <- 'figures'
- dir.create(folder_name_for_figures) # directory used to save all plots
+ dev.off(); par_ini <- par(no.readonly = TRUE) ## default parameters for display
+
+
 
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
  ####              Temperature: Condition 1              ####
@@ -49,21 +51,17 @@ in the paper.
                        morphology = TRUE, condition = '1',
                        nb_cores = nb_cores, rand_trait = FALSE,
                        fixed = NULL, digit = digit)
+
  ## for PRC
  \dontrun{
-   if (file.exists('./data/mod_T_prc.rda')) {
-     load('./data/mod_T_prc.rda')
-   } else {
-     mod_T_prc <- fit_all(data = dat_Clim_prc, temperature = TRUE,
-                          precipitation = FALSE, phenology = TRUE,
-                          morphology = TRUE, condition = '1',
-                          nb_cores = nb_cores, rand_trait = FALSE,
-                          fixed = NULL, digit = digit)
-     save(mod_T_prc, file = './data/mod_T_prc.rda')
-   }
+ mod_T_prc <- fit_all(data = dat_Clim_prc, temperature = TRUE,
+                      precipitation = FALSE, phenology = TRUE,
+                      morphology = TRUE, condition = '1',
+                      nb_cores = nb_cores, rand_trait = FALSE,
+                      fixed = NULL, digit = digit)
 
  ## forest plot as in Fig. 2
- pdf(file = paste0(folder_name_for_figures, '/T_Fig2.pdf'))
+ par(par_ini)
  plot_T_cond1 <- plot_forest(meta_obj1 = mod_T_prcs$meta_res,
                              meta_obj2 = NULL,
                              list_extra_meta_obj =
@@ -73,35 +71,27 @@ in the paper.
                              labels = c(traits = FALSE,
                                         fitness = FALSE,
                                         country = TRUE,
-                                        authors = FALSE),
-                             pdf_basename = NULL)
+                                        authors = FALSE))
  mtext('Across', side = 2, line = 3,
        at = -1, las = 2, cex = 0.9, col = 'black')
  mtext('studies', side = 2, line = 3,
        at = -2, las = 2, cex = 0.9, col = 'black')
- dev.off()
  }
 
  ## plots of raw data and extracted slopes per study, as in Suppl. Fig. S11
- pdf(paste0(folder_name_for_figures, '/T_year_raw_20_S11.pdf'),
-     height = 10, width = 7)
- par(oma = c(2, 2, 0, 0),
-     mar = c(1, 2, 3, 1))
+ par(par_ini); par(oma = c(3, 5, 0, 0), mar = c(1, 2, 3, 1))
  plot_raw(data = dat_Clim, temperature = TRUE,
           precipitation = FALSE, phenology = TRUE, morphology = TRUE,
           condition = '1', id_to_do = c(1:20))
- dev.off()
 
  ## in the full dataset there are 41 ids (21_41). In the publicly shared 36
- pdf(paste0(folder_name_for_figures,'/T_year_raw_21_36_S11.pdf'),
-     height = 8, width = 7)
- par(oma = c(2, 2, 0, 0),
-     mar = c(1, 2, 3, 1))
+ par(par_ini); par(oma = c(3, 5, 0, 0), mar = c(1, 2, 3, 1))
  plot_raw(data = dat_Clim, temperature = TRUE,
           precipitation = FALSE, phenology = TRUE,
           morphology = TRUE, condition = '1',
           id_to_do = c(21:36))
- dev.off()
+
+
 
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
  ####        Temperature: Condition 2, phenology         ####
@@ -112,6 +102,7 @@ in the paper.
                             morphology = FALSE, condition = '2',
                             nb_cores = nb_cores, rand_trait = FALSE,
                             fixed = NULL, digit = digit)
+
  ## fixed effects
  mod_phen_T_prcs_Type <- fit_all(data = dat_Trait,
                                  temperature = TRUE, precipitation = FALSE,
@@ -119,48 +110,33 @@ in the paper.
                                  condition = '2', nb_cores = nb_cores,
                                  rand_trait = FALSE, fixed = 'Trait_Cat',
                                  digit = digit)
+
  ## for PRC
  \dontrun{
-   if (file.exists('./data/mod_phen_T_prc.rda')) {
-     load('./data/mod_phen_T_prc.rda')
-   } else {
-     mod_phen_T_prc <- fit_all(data = dat_Trait_prc,
-                               temperature = TRUE, precipitation = FALSE,
-                               phenology = TRUE, morphology = FALSE,
-                               condition = '2', nb_cores = nb_cores,
-                               rand_trait = FALSE, fixed = NULL,
-                               digit = digit)
-     save(mod_phen_T_prc, file = './data/mod_phen_T_prc.rda',
-          compress = 'xz')
-   }
+ mod_phen_T_prc <- fit_all(data = dat_Trait_prc,
+                           temperature = TRUE, precipitation = FALSE,
+                           phenology = TRUE, morphology = FALSE,
+                           condition = '2', nb_cores = nb_cores,
+                           rand_trait = FALSE, fixed = NULL,
+                           digit = digit)
 
-   ## fixed effects
-   if (file.exists('./data/mod_phen_T_prc_Type.rda')) {
-     load('./data/mod_phen_T_prc_Type.rda')
-   } else {
-     mod_phen_T_prc_Type <- fit_all(data = dat_Trait_prc,
-                                    temperature = TRUE, precipitation = FALSE,
-                                    phenology = TRUE, morphology = FALSE,
-                                    condition = '2', nb_cores = nb_cores,
-                                    rand_trait = FALSE, fixed = 'Trait_Cat',
-                                    digit = digit)
-     save(mod_phen_T_prc_Type, file = './data/mod_phen_T_prc_Type.rda',
-         compress = 'xz')
-   }
+ ## fixed effects
+ mod_phen_T_prc_Type <- fit_all(data = dat_Trait_prc,
+                                temperature = TRUE, precipitation = FALSE,
+                                phenology = TRUE, morphology = FALSE,
+                                condition = '2', nb_cores = nb_cores,
+                                rand_trait = FALSE, fixed = 'Trait_Cat',
+                                digit = digit)
 
-   if (file.exists('./data/mod_phen_T_prc_Taxon.rda')) {
-     load('./data/mod_phen_T_prc_Taxon.rda')
-   } else {
-     mod_phen_T_prc_Taxon <- fit_all(data = dat_Trait_prc,
-                                     temperature = TRUE, precipitation = FALSE,
-                                     phenology = TRUE, morphology = FALSE,
-                                     condition = '2', nb_cores = nb_cores,
-                                     rand_trait = FALSE, fixed = 'Taxon',
-                                     digit = digit)
-     save(mod_phen_T_prc_Taxon, file = './data/mod_phen_T_prc_Taxon.rda',
-          compress = 'xz')
-   }
+ mod_phen_T_prc_Taxon <- fit_all(data = dat_Trait_prc,
+                                 temperature = TRUE, precipitation = FALSE,
+                                 phenology = TRUE, morphology = FALSE,
+                                 condition = '2', nb_cores = nb_cores,
+                                 rand_trait = FALSE, fixed = 'Taxon',
+                                 digit = digit)
  }
+
+
 
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
  ####        Temperature: Condition 2, morphology        ####
@@ -171,6 +147,7 @@ in the paper.
                              morphology = TRUE, condition = '2',
                              nb_cores = nb_cores, rand_trait = FALSE,
                              fixed = NULL, digit = digit)
+
  ## fixed effects
  mod_morph_T_prcs_Type <- fit_all(data = dat_Trait,
                                   temperature = TRUE, precipitation = FALSE,
@@ -178,64 +155,41 @@ in the paper.
                                   condition = '2', nb_cores = nb_cores,
                                   rand_trait = FALSE, fixed = 'Morph_type',
                                   digit = digit)
+
  ## for PRC
  \dontrun{
-   if (file.exists('./data/mod_morph_T_prc.rda')) {
-     load('./data/mod_morph_T_prc.rda')
-   } else {
-     mod_morph_T_prc <- fit_all(data = dat_Trait_prc,
-                                temperature = TRUE, precipitation = FALSE,
-                                phenology = FALSE, morphology = TRUE,
-                                condition = '2', nb_cores = nb_cores,
-                                rand_trait = FALSE, fixed = NULL,
-                                digit = digit)
-     save(mod_morph_T_prc, file = './data/mod_morph_T_prc.rda',
-          compress = 'xz')
-   }
+   mod_morph_T_prc <- fit_all(data = dat_Trait_prc,
+                              temperature = TRUE, precipitation = FALSE,
+                              phenology = FALSE, morphology = TRUE,
+                              condition = '2', nb_cores = nb_cores,
+                              rand_trait = FALSE, fixed = NULL,
+                              digit = digit)
 
    ## fixed effects
-   if (file.exists('./data/mod_morph_T_prc_Type.rda')) {
-     load('./data/mod_morph_T_prc_Type.rda')
-   } else {
-     mod_morph_T_prc_Type <- fit_all(data = dat_Trait_prc,
-                                     temperature = TRUE, precipitation = FALSE,
-                                     phenology = FALSE, morphology = TRUE,
-                                     condition = '2', nb_cores = nb_cores,
-                                     rand_trait = FALSE, fixed = 'Morph_type',
-                                     digit = digit)
-     save(mod_morph_T_prc_Type, file = './data/mod_morph_T_prc_Type.rda',
-          compress = 'xz')
-   }
+   mod_morph_T_prc_Type <- fit_all(data = dat_Trait_prc,
+                                   temperature = TRUE, precipitation = FALSE,
+                                   phenology = FALSE, morphology = TRUE,
+                                   condition = '2', nb_cores = nb_cores,
+                                   rand_trait = FALSE, fixed = 'Morph_type',
+                                   digit = digit)
 
-   if (file.exists('./data/mod_morph_T_prc_Taxon.rda')) {
-     load('./data/mod_morph_T_prc_Taxon.rda')
-   } else {
-     mod_morph_T_prc_Taxon <- fit_all(data = dat_Trait_prc,
-                                      temperature = TRUE, precipitation = FALSE,
-                                      phenology = FALSE, morphology = TRUE,
-                                      condition = '2', nb_cores = nb_cores,
-                                      rand_trait = FALSE, fixed = 'Taxon',
-                                      digit = digit)
-     save(mod_morph_T_prc_Taxon, file = './data/mod_morph_T_prc_Taxon.rda',
-          compress = 'xz')
-   }
+   mod_morph_T_prc_Taxon <- fit_all(data = dat_Trait_prc,
+                                    temperature = TRUE, precipitation = FALSE,
+                                    phenology = FALSE, morphology = TRUE,
+                                    condition = '2', nb_cores = nb_cores,
+                                    rand_trait = FALSE, fixed = 'Taxon',
+                                    digit = digit)
 
-   if (file.exists('./data/mod_morph_T_prc_Therm.rda')) {
-     load('./data/mod_morph_T_prc_Therm.rda')
-   } else {
-     mod_morph_T_prc_Therm <- fit_all(data = dat_Trait_prc,
-                                      temperature = TRUE, precipitation = FALSE,
-                                      phenology = FALSE, morphology = TRUE,
-                                      condition = '2', nb_cores = nb_cores,
-                                      rand_trait = FALSE, fixed = 'Blood',
-                                      digit = digit)
-     save(mod_morph_T_prc_Therm, file = './data/mod_morph_T_prc_Therm.rda',
-          compress = 'xz')
-  }
+   mod_morph_T_prc_Therm <- fit_all(data = dat_Trait_prc,
+                                    temperature = TRUE, precipitation = FALSE,
+                                    phenology = FALSE, morphology = TRUE,
+                                    condition = '2', nb_cores = nb_cores,
+                                    rand_trait = FALSE, fixed = 'Blood',
+                                    digit = digit)
 
 
  ## forest plot as in Fig. 3
- pdf(file = paste0(folder_name_for_figures, '/Traits_Fig3.pdf'))
+ par(par_ini)
  plot_T_cond2 <- plot_forest(meta_obj1 = mod_phen_T_prcs$meta_res,
                              meta_obj2 = mod_morph_T_prcs$meta_res,
                              list_extra_meta_obj =
@@ -251,8 +205,7 @@ in the paper.
                              labels = c(traits = TRUE,
                                         fitness = FALSE,
                                         country = FALSE,
-                                        authors = FALSE),
-                             pdf_basename = NULL)
+                                        authors = FALSE))
  mtext('Across studies, ', at = -0.6, side = 2,
        line = 4, las = 2, cex = 0.9, col = 'black')
  mtext('PRCS dataset', at = -2.2, side = 2,
@@ -261,36 +214,28 @@ in the paper.
        line = 4, las = 2, cex = 0.9, col = 'black')
  mtext('PRC dataset ', at = -9, side = 2,
        line = 4.3, las = 2, cex = 0.9, col = 'black')
- dev.off()
  }
 
  ## plots of raw data and extracted slopes per study, as in Suppl. Fig. S12-S13
- pdf(paste0(folder_name_for_figures, '/PhenTrait_20_S12.pdf'),
-     height = 10, width = 7)
- par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
+ par(par_ini); par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
  plot_raw(data = dat_Trait, temperature = TRUE,
           precipitation = FALSE, phenology = TRUE,
           morphology = FALSE, condition = '2',
           id_to_do = c(1:20))
- dev.off()
 
- pdf(paste0(folder_name_for_figures, '/PhenTrait_21_38_S12.pdf'),
-     height = 10, width = 7)
- par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
+ par(par_ini); par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
  plot_raw(data = dat_Trait, temperature = TRUE,
           precipitation = FALSE, phenology = TRUE,
           morphology = FALSE, condition = '2',
           id_to_do = c(21:38))
- dev.off()
 
- pdf(paste0(folder_name_for_figures, '/MorphTrait_4_S13.pdf'),
-     height = 3, width = 7)
- par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
+ par(par_ini); par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
  plot_raw(data = dat_Trait, temperature = TRUE,
           precipitation = FALSE, phenology = FALSE,
           morphology = TRUE, condition = '2',
           id_to_do = c(1:4))
- dev.off()
+
+
 
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
  ####               Temperature: Condition 3             ####
@@ -301,6 +246,7 @@ in the paper.
                            morphology = FALSE, condition = '3',
                            nb_cores = nb_cores, rand_trait = FALSE,
                            fixed = NULL, digit = digit)
+
  ## fixed effects
  mod_Sel_T_phen_Fitn <- fit_all(data = dat_Sel, temperature = TRUE,
                                 precipitation = FALSE, phenology = TRUE,
@@ -326,6 +272,7 @@ in the paper.
                                  morphology = TRUE, condition = '3',
                                  nb_cores = nb_cores, rand_trait = FALSE,
                                  fixed = 'Fitness_Categ', digit = digit)
+
  mod_Sel_T_morph_Gener <- fit_all(data = dat_Sel, temperature = TRUE,
                                   precipitation = FALSE, phenology = FALSE,
                                   morphology = TRUE, condition = '3',
@@ -333,7 +280,7 @@ in the paper.
                                   fixed = 'GenerationLength_yr',
                                   digit = digit)
  ## forest plot as in Fig. 4
- pdf(file = paste0(folder_name_for_figures, '/Sel_Fig4.pdf'))
+ par(par_ini)
  plot_Sel_T_cond3 <- plot_forest(meta_obj1 = mod_Sel_T_phen$meta_res,
                          meta_obj2 = mod_Sel_T_morph$meta_res,
                          list_extra_meta_obj =
@@ -345,38 +292,27 @@ in the paper.
                          labels = c(traits = TRUE,
                                     fitness = TRUE,
                                     country = FALSE,
-                                    authors = FALSE),
-                         pdf_basename = NULL)
+                                    authors = FALSE))
  mtext('Across', side = 2, line = 4.5, at = -2.2,
        las = 2, cex = 0.85, col = 'black')
  mtext('studies', side = 2, line = 4.5, at = -3.4,
        las = 2, cex = 0.85, col = 'black')
- dev.off()
 
  ## plot of raw data for supplementary, as in S14-S15
- pdf(paste0(folder_name_for_figures, '/Sel_PhenTrait_20_S14.pdf'),
-     height = 10, width = 7)
- par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
+ par(par_ini); par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
  plot_raw(data = dat_Sel, temperature = TRUE,
           precipitation = FALSE, phenology = TRUE, morphology = FALSE,
           condition = '3', id_to_do = c(1:20))
- dev.off()
 
- pdf(paste0(folder_name_for_figures, '/Sel_PhenTrait_21_36_S14.pdf'),
-     height = 8, width = 7)
- par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
+ par(par_ini); par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
  plot_raw(data = dat_Sel, temperature = TRUE,
           precipitation = FALSE, phenology = TRUE, morphology = FALSE,
           condition = '3', id_to_do = c(21:36))
- dev.off()
 
- pdf(paste0(folder_name_for_figures, '/Sel_MorphTrait_1_9_S15.pdf'),
-     height = 6.6, width = 7)
- par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
+ par(par_ini); par(oma = c(2, 2, 0, 0), mar = c(1, 2, 3, 1))
  plot_raw(data = dat_Sel, temperature = TRUE,
           precipitation = FALSE, phenology = FALSE, morphology = TRUE,
           condition = '3', id_to_do = c(1:9))
- dev.off()
 
  ## change of selection over years, phenology
  mod_Sel_T_phen_year <- fit_all(data = dat_Sel, temperature = TRUE,
@@ -391,7 +327,7 @@ in the paper.
                                 nb_cores = nb_cores, rand_trait = FALSE,
                                 fixed = NULL, digit = digit)
 
- pdf(file = paste0(folder_name_for_figures, '/Sel_OverYears_FigS7.pdf'))
+ par(par_ini)
  plot_Sel_T_overYrs <- plot_forest(meta_obj1 = mod_Sel_T_phen_year$meta_res,
                        meta_obj2 = mod_Sel_T_morph_year$meta_res,
                        list_extra_meta_obj =
@@ -403,22 +339,19 @@ in the paper.
                        labels = c(traits = TRUE,
                                   fitness = TRUE,
                                   country = FALSE,
-                                  authors = FALSE),
-                       pdf_basename = NULL)
+                                  authors = FALSE))
  mtext('Across', side = 2, line = 6, at = -1,
        las = 2, cex = 0.8, col = 'black')
  mtext('studies', side = 2, line = 6, at = -2.2,
        las = 2, cex = 0.8, col = 'black')
- dev.off()
 
 
 
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-####  Assess whether responses are adaptive: products of slopes               #
-####   from conditions 1 & 2 vs. the slopes from condition 3                  #
-####                       binomial test                                      #
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+####  Assess whether responses are adaptive: products of slopes             #
+####   from conditions 1 & 2 vs. the slopes from condition 3                #
+####                       binomial test                                    #
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
  # assess condition 3: whether response is adaptive?
  ## extracting slopes
@@ -429,7 +362,7 @@ in the paper.
 all_slopes_morph <- merge_3slopes(meta_obj = mod_T_prcs,
                                  meta_obj1 = mod_morph_T_prcs,
                                  meta_obj2 = mod_Sel_T_morph)
-## testing adaptation
+ ## testing adaptation
  res_phen <- table(all_slopes_phen$slope.x * all_slopes_phen$slope.y > 0)
 
  (bc_phenT <- binom.confint(res_phen["TRUE"], sum(res_phen)))
@@ -442,12 +375,11 @@ all_slopes_morph <- merge_3slopes(meta_obj = mod_T_prcs,
  binom.test(res_morph["TRUE"], sum(res_morph))
 
 
- jpeg(filename = paste0(folder_name_for_figures, '/Fig5_Adapt.jpg'),
-     quality = 100, pointsize = 20, height = 860, width = 860)
- mat = matrix(c(1, 2, 3, 3), 2,2, byrow = TRUE)
+ par(par_ini)
+ mat <- matrix(c(1, 2, 3, 3), 2,2, byrow = TRUE)
  layout(mat, widths =  rep.int(1, ncol(mat)),
         heights = rep.int(1, nrow(mat)), respect = TRUE)
-plot_slopes_products(data = merge_3slopes(meta_obj = mod_T_prcs,
+ plot_slopes_products(data = merge_3slopes(meta_obj = mod_T_prcs,
                       meta_obj1 = mod_phen_T_prcs,
                       meta_obj2 = mod_Sel_T_phen),
                       phenological = TRUE)
@@ -458,32 +390,33 @@ plot_slopes_products(data = merge_3slopes(meta_obj = mod_T_prcs,
                      phenological = FALSE, xlim = c(-0.1, 0.1),
                      ylim = c(-0.1, 0.1))
 
-par(mar = c(4, 8, 3, 6))
-theplot_Adapt <- barplot(cbind(c(res_phen["TRUE"]/sum(res_phen),
-                                 res_phen["FALSE"]/sum(res_phen)),
-                                   c(res_morph["TRUE"]/sum(res_morph),
-                                     res_morph["FALSE"]/sum(res_morph))),
-                         names.arg = c("Phenology", "Morphology"),
-                         las = 1, ylim = c(0, 1.1),
-                         ylab = "Proportion of studies",
-                         col = c("grey", "black"),
-                         cex.lab = 1.3, cex.axis = 1.3, cex.names = 1.3)
-legend(x = 0.8, y = 1, horiz = TRUE, fill = c("grey", "black"),
-       legend = c("adaptative", "maladaptive"), bg = 'white')
-arrows(x0 = theplot_Adapt[1], x1 = theplot_Adapt[1],
-       y0 = bc_phenT[11, "lower"], y1 = bc_phenT[11, "upper"],
-       code = 3, angle = 90, col = "grey30", lwd = 4, length = 0.1)
-arrows(x0 = theplot_Adapt[2], x1 = theplot_Adapt[2],
-       y0 = bc_morphT[11, "lower"], y1 = bc_morphT[11, "upper"],
-       code = 3, angle = 90, col = "grey30", lwd = 4, length = 0.1)
-mtext('C)', side = 3, line = 0, adj = 0, cex = 2)
-dev.off()
+ par(par_ini); par(mar = c(4, 8, 3, 6))
+ theplot_Adapt <- barplot(cbind(c(res_phen["TRUE"]/sum(res_phen),
+                                  res_phen["FALSE"]/sum(res_phen)),
+                                    c(res_morph["TRUE"]/sum(res_morph),
+                                      res_morph["FALSE"]/sum(res_morph))),
+                          names.arg = c("Phenology", "Morphology"),
+                          las = 1, ylim = c(0, 1.1),
+                          ylab = "Proportion of studies",
+                          col = c("grey", "black"),
+                          cex.lab = 1.3, cex.axis = 1.3, cex.names = 1.3)
+ legend(x = 0.8, y = 1, horiz = TRUE, fill = c("grey", "black"),
+        legend = c("adaptative", "maladaptive"), bg = 'white')
+ arrows(x0 = theplot_Adapt[1], x1 = theplot_Adapt[1],
+        y0 = bc_phenT[11, "lower"], y1 = bc_phenT[11, "upper"],
+        code = 3, angle = 90, col = "grey30", lwd = 4, length = 0.1)
+ arrows(x0 = theplot_Adapt[2], x1 = theplot_Adapt[2],
+        y0 = bc_morphT[11, "lower"], y1 = bc_morphT[11, "upper"],
+        code = 3, angle = 90, col = "grey30", lwd = 4, length = 0.1)
+ mtext('C)', side = 3, line = 0, adj = 0, cex = 2)
+
 
 
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
  ####         Assess whether responses are adaptive         ####
  ####                     meta-analysis                     ####
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
  dat_AllTPhen <- prepare_data(data = dat_All, temperature = TRUE,
                                phenology = TRUE, morphology = FALSE)
  dat_Adpt <- compute_adaptation(data = dat_AllTPhen)
@@ -495,7 +428,7 @@ dev.off()
 
 
 
- # morphology
+ ## morphology
  dat_AllTMorph <- prepare_data(data = dat_All, temperature = TRUE,
                                phenology = FALSE, morphology = TRUE)
  dat_AllTMorph <- dat_AllTMorph[! is.na(dat_AllTMorph$ScaledSE), ]
@@ -523,7 +456,7 @@ dev.off()
                                   fixed = NULL)
 
 
- # morphology
+ ## morphology
  dat_SelT_Morph <- prepare_data(data = dat_Sel, temperature = TRUE,
                                phenology = FALSE, morphology = TRUE)
  dat_AllMorph_Sel <- dat_All[dat_All$id \%in\% unique(dat_SelT_Morph$id), ]
@@ -536,28 +469,29 @@ dev.off()
 
  mod_Adapt_T_Morph_Sel <- fit_meta(meta_data = dat_Adpt_Morph_Sel, fixed = NULL)
 
- pdf(paste0(folder_name_for_figures,'/Test_Adapt_T_Sel_FigS8.pdf'))
+ par(par_ini)
  plot_adapt_T_Sel <- plot_forest(meta_obj1 = mod_Adapt_T_Sel,
                                  meta_obj2 = mod_Adapt_T_Morph_Sel,
-                                list_extra_meta_obj =
-                       list(mod_Adapt_T_Sel, mod_Adapt_T_Morph_Sel),
-                       sort = c('Species', 'Study_Authors',
-                                 'Fitness_Categ'),
-                       increasing = TRUE,
-                       labels = c(traits = TRUE,
-                                  fitness = TRUE,
-                                  country = FALSE,
-                                  authors = FALSE),
-                       pdf_basename = NULL, mar = c(7, 10, 2,2))
+                                 list_extra_meta_obj =
+                                   list(mod_Adapt_T_Sel, mod_Adapt_T_Morph_Sel),
+                                 sort = c('Species', 'Study_Authors',
+                                          'Fitness_Categ'),
+                                 increasing = TRUE,
+                                 labels = c(traits = TRUE,
+                                            fitness = TRUE,
+                                            country = FALSE,
+                                            authors = FALSE),
+                                 mar = c(7, 10, 2, 2))
 
  mtext('the direction of climate-driven', side = 1, line = 4.2, cex = 1.3)
  mtext('trait change', side = 1, line = 5.3, cex = 1.3)
-   dev.off()
+
 
 
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
  ####                   Precipitation: Condition 1              ####
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
  ## for PRCS
  mod_Prec_prcs <- fit_all(data = dat_Clim, temperature = FALSE,
                           precipitation = TRUE, phenology = TRUE,
@@ -571,21 +505,26 @@ dev.off()
                          nb_cores = nb_cores, rand_trait = FALSE,
                          fixed = NULL, digit = digit)
 
+
+
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
  ####                Precipitation: Condition 2                 ####
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
  ## for PRCS
  mod_phen_Prec_prcs <- fit_all(data = dat_Trait, temperature = FALSE,
                                precipitation = TRUE, phenology = TRUE,
                                morphology = FALSE, condition = '2',
                                nb_cores = nb_cores, rand_trait = FALSE,
                                fixed = NULL, digit = digit)
+
  ## for PRC
  mod_phen_Prec_prc <- fit_all(data = dat_Trait_prc, temperature = FALSE,
                               precipitation = TRUE, phenology = TRUE,
                               morphology = FALSE, condition = '2',
                               nb_cores = nb_cores, rand_trait = FALSE,
                               fixed = NULL, digit = digit)
+
  ## fixed effects
  mod_phen_Prec_prc_Taxon <- fit_all(data = dat_Trait_prc,
                                     temperature = FALSE,
@@ -594,6 +533,9 @@ dev.off()
                                     condition = '2', nb_cores = nb_cores,
                                     rand_trait = FALSE, fixed = 'Taxon',
                                     digit = digit)
+
+
+
 
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
  ####                  Precipitation: Condition 3               ####
@@ -606,12 +548,14 @@ dev.off()
                               condition = '3', nb_cores = nb_cores,
                               rand_trait = FALSE, fixed = NULL,
                               digit = digit)
+
  ## fixed effects
  mod_Sel_Prec_phen_Fitn <- fit_all(data = dat_Sel, temperature = FALSE,
                                    precipitation = TRUE, phenology = TRUE,
                                    morphology = FALSE, condition = '3',
                                    nb_cores = nb_cores, rand_trait = FALSE,
                                    fixed = 'Fitness_Categ', digit = digit)
+
  mod_Sel_Prec_phen_Gener <- fit_all(data = dat_Sel, temperature = FALSE,
                                     precipitation = TRUE, phenology = TRUE,
                                     morphology = FALSE, condition = '3',
@@ -620,9 +564,7 @@ dev.off()
                                     digit = digit)
 
  ## supplementary plot of all effects for each condition (as Fig. S3)
- pdf(paste0(folder_name_for_figures, '/Precip_FigS3.pdf'),
-     height = 5.5, width = 16)
- par(oma = c(2,1,1,0), mfrow = c(1,3))
+ par(par_ini); par(oma = c(2,1,1,0), mfrow = c(1,3))
 
  ## panel a)
  plot_Prec_Cond1 <- plot_forest(meta_obj1 = mod_Prec_prcs$meta_res,
@@ -636,7 +578,7 @@ dev.off()
                                            fitness = FALSE,
                                            country = TRUE,
                                            authors = FALSE),
-                                pdf_basename = NULL, mar = c(4, 9, 2, 2))
+                                mar = c(4, 9, 2, 2))
  mtext('Across', side = 2, line = 5,
        at = -1.2, las = 2, cex = 0.9, col = 'black')
  mtext('studies', side = 2, line = 5,
@@ -655,7 +597,7 @@ dev.off()
                                     fitness = FALSE,
                                     country = FALSE,
                                     authors = FALSE),
-                         pdf_basename = NULL, mar = c(4, 9, 2, 2))
+                         mar = c(4, 9, 2, 2))
  mtext('Across', side = 2, line = 6,
        at = -1.2, las = 2, cex = 0.8, col = 'black')
  mtext('studies', side = 2, line = 6,
@@ -675,17 +617,19 @@ dev.off()
                                     fitness = TRUE,
                                     country = FALSE,
                                     authors = FALSE),
-                         pdf_basename = NULL, mar = c(4, 13, 2, 2))
+                         mar = c(4, 13, 2, 2))
  mtext('Across', side = 2, line = 8,
        at = -2, las = 2, cex = 0.8, col = 'black')
  mtext('studies', side = 2, line = 8,
        at = -3, las = 2, cex = 0.8, col = 'black')
  mtext('c)', side = 2, at = 13.3, cex = 1.5, las = 2, line = 1.2)
- dev.off()
+
+
 
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
  ####                      Sensitivity analysis                           ####
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
  ## excluding the study by Goodenough et al. (2011)
  mod_phen_T_prcs_noOutlier <- fit_all(data = dat_Trait[
                               dat_Trait$Study_Authors != 'Goodenough', ],
@@ -758,205 +702,193 @@ dev.off()
                                   fixed = 'GenerationLength_yr',
                                   digit = digit)
 
-## excluding both the study on mammal and the study by Goodenough et al. (2011)
-mod_phen_T_prcs_noBoth <- fit_all(data = dat_Trait[!
-                          dat_Trait$Study_Authors \%in\%
-                          c('Goodenough', 'Plard_et_al'), ],
-                          temperature = TRUE, precipitation = FALSE,
-                          phenology = TRUE, morphology = FALSE,
-                          condition = '2', nb_cores = nb_cores,
-                          rand_trait = FALSE, fixed = NULL, digit = digit)
+ ## excluding both the study on mammal and the study by Goodenough et al. (2011)
+ mod_phen_T_prcs_noBoth <- fit_all(data = dat_Trait[!
+                             dat_Trait$Study_Authors \%in\%
+                             c('Goodenough', 'Plard_et_al'), ],
+                             temperature = TRUE, precipitation = FALSE,
+                             phenology = TRUE, morphology = FALSE,
+                             condition = '2', nb_cores = nb_cores,
+                             rand_trait = FALSE, fixed = NULL, digit = digit)
 
-mod_Sel_T_phen_noBoth <- fit_all(data = dat_Sel[!
-                         dat_Sel$Study_Authors \%in\%
-                         c('Goodenough', 'Plard_et_al'), ],
-                         temperature = TRUE, precipitation = FALSE,
-                         phenology = TRUE, morphology = FALSE,
-                         condition = '3', nb_cores = nb_cores,
-                         rand_trait = FALSE, fixed = NULL,
-                         digit = digit)
+ mod_Sel_T_phen_noBoth <- fit_all(data = dat_Sel[!
+                                  dat_Sel$Study_Authors \%in\%
+                                  c('Goodenough', 'Plard_et_al'), ],
+                                  temperature = TRUE, precipitation = FALSE,
+                                  phenology = TRUE, morphology = FALSE,
+                                  condition = '3', nb_cores = nb_cores,
+                                  rand_trait = FALSE, fixed = NULL,
+                                  digit = digit)
 
-## fixed effects
-mod_Sel_T_phen_Fitn_noBoth <- fit_all(data = dat_Sel[!
-                              dat_Sel$Study_Authors \%in\%
-                              c('Goodenough', 'Plard_et_al'), ],
-                              temperature = TRUE, precipitation = FALSE,
-                              phenology = TRUE, morphology = FALSE,
-                              condition = '3', nb_cores = nb_cores,
-                              rand_trait = FALSE, fixed = 'Fitness_Categ',
-                              digit = digit)
+ ## fixed effects
+ mod_Sel_T_phen_Fitn_noBoth <- fit_all(data = dat_Sel[!
+                                 dat_Sel$Study_Authors \%in\%
+                                 c('Goodenough', 'Plard_et_al'), ],
+                                 temperature = TRUE, precipitation = FALSE,
+                                 phenology = TRUE, morphology = FALSE,
+                                 condition = '3', nb_cores = nb_cores,
+                                 rand_trait = FALSE, fixed = 'Fitness_Categ',
+                                 digit = digit)
 
 mod_Sel_T_phen_Gener_noBoth <- fit_all(data = dat_Sel[!
-                               dat_Sel$Study_Authors \%in\%
-                               c('Goodenough', 'Plard_et_al'), ],
-                               temperature = TRUE, precipitation = FALSE,
-                               phenology = TRUE, morphology = FALSE,
-                               condition = '3', nb_cores = nb_cores,
-                               rand_trait = FALSE,
-                               fixed = 'GenerationLength_yr',
-                               digit = digit)
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-####              Sensitivity to the inclusion of abundance             ####
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-
-dat_PhenT_ab <- prepare_data(data = dat_Trait, temperature = TRUE,
-                             precipitation = FALSE, phenology = TRUE,
-                             morphology = FALSE)
-dat_PhenT_ab <- dat_PhenT_ab[! is.na(dat_PhenT_ab$ScaledPop), ]
-
-# to exclude studies with < 11 years
-num_years <- dat_PhenT_ab \%>\%
-             dplyr::group_by(., id) \%>\%
-             dplyr::summarise(num = n())
-
-num_years <- num_years[num_years$num > 10, ]
-dat_PhenT_ab <- dat_PhenT_ab[dat_PhenT_ab$id \%in\% num_years$id, ]
-
-EfSizes_phen_ab <- extract_effects_all_ids(data = dat_PhenT_ab, condition = '2b',
-                                          nb_cores = nb_cores)
-EfSizes_phen_ab$slope <- EfSizes_phen_ab$slope_clim
-EfSizes_phen_ab$SE_slope <- EfSizes_phen_ab$se_slope_clim
-meta_phen_abund <- fit_meta(EfSizes_phen_ab, fixed = NULL,
-                           rand_trait = FALSE, digit = 3)
+                                   dat_Sel$Study_Authors \%in\%
+                                   c('Goodenough', 'Plard_et_al'), ],
+                                   temperature = TRUE, precipitation = FALSE,
+                                   phenology = TRUE, morphology = FALSE,
+                                   condition = '3', nb_cores = nb_cores,
+                                   rand_trait = FALSE,
+                                   fixed = 'GenerationLength_yr',
+                                   digit = digit)
 
 
-## and a model without abundance on this subset of data
-mod_phen_T_prcs_subs <- fit_all(data = dat_PhenT_ab, temperature = TRUE,
-                                precipitation = FALSE, phenology = TRUE,
-                                morphology = FALSE, condition = '2',
-                                nb_cores = nb_cores, rand_trait = FALSE,
-                                fixed = NULL, digit = digit)
 
-## plot as Supplementary Fig. S14 (for all slopes)
-plot_abund_effects(meta_data = EfSizes_phen_ab,
-                   pdf_basename = paste0(folder_name_for_figures,
-                  '/TraitsAbund_FigS6'))
+ #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+ ####              Sensitivity to the inclusion of abundance             ####
+ #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+
+ dat_PhenT_ab <- prepare_data(data = dat_Trait, temperature = TRUE,
+                              precipitation = FALSE, phenology = TRUE,
+                              morphology = FALSE)
+ dat_PhenT_ab <- dat_PhenT_ab[! is.na(dat_PhenT_ab$ScaledPop), ]
+
+ # to exclude studies with < 11 years
+ num_years <- dat_PhenT_ab \%>\%
+              dplyr::group_by(., id) \%>\%
+              dplyr::summarise(num = dplyr::n())
+
+ num_years <- num_years[num_years$num > 10, ]
+ dat_PhenT_ab <- dat_PhenT_ab[dat_PhenT_ab$id \%in\% num_years$id, ]
+
+ EfSizes_phen_ab <- extract_effects_all_ids(data = dat_PhenT_ab, condition = '2b',
+                                           nb_cores = nb_cores)
+ EfSizes_phen_ab$slope <- EfSizes_phen_ab$slope_clim
+ EfSizes_phen_ab$SE_slope <- EfSizes_phen_ab$se_slope_clim
+ meta_phen_abund <- fit_meta(EfSizes_phen_ab, fixed = NULL,
+                            rand_trait = FALSE, digit = 3)
 
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-####               Supplementary: Funnel plots                           ####
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+ ## and a model without abundance on this subset of data
+ mod_phen_T_prcs_subs <- fit_all(data = dat_PhenT_ab, temperature = TRUE,
+                                 precipitation = FALSE, phenology = TRUE,
+                                 morphology = FALSE, condition = '2',
+                                 nb_cores = nb_cores, rand_trait = FALSE,
+                                 fixed = NULL, digit = digit)
 
-## funnel plots for PRCS, as Supplementary Fig. S16
-pdf(paste0(folder_name_for_figures, '/FunnelPlots_PRCS_FigS16D.pdf'),
-    height = 7, width = 10)
-par(mfrow = c(2, 3))
-plot_funnel(meta_obj = mod_T_prcs)
-mtext('a)', line = 1, adj = 0, cex = 1.7)
+ ## plot as Supplementary Fig. S14 (for all slopes)
+ par(par_ini)
+ plot_abund_effects(meta_data = EfSizes_phen_ab)
 
-plot_funnel(meta_obj = mod_phen_T_prcs)
-mtext('b)', line = 1, adj = 0, cex = 1.7)
 
-plot_funnel(meta_obj = mod_morph_T_prcs)
-mtext('c)', line = 1, adj = 0, cex = 1.7)
 
-plot_funnel(meta_obj = mod_Sel_T_phen, model = 'lm')
-mtext('d)', line = 1, adj = 0, cex = 1.7)
+ #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+ ####               Supplementary: Funnel plots                          ####
+ #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-plot_funnel(meta_obj = mod_Sel_T_morph)
-mtext('e)', line = 1, adj = 0, cex = 1.7)
+ ## funnel plots for PRCS, as Supplementary Fig. S16
+ par(par_ini); par(mfrow = c(2, 3))
+ plot_funnel(meta_obj = mod_T_prcs)
+ mtext('a)', line = 1, adj = 0, cex = 1.7)
 
-dev.off()
+ plot_funnel(meta_obj = mod_phen_T_prcs)
+ mtext('b)', line = 1, adj = 0, cex = 1.7)
 
-## funnel plots for PRC, as Supplementary Fig. S17
-## run only if the models were fit
+ plot_funnel(meta_obj = mod_morph_T_prcs)
+ mtext('c)', line = 1, adj = 0, cex = 1.7)
+
+ plot_funnel(meta_obj = mod_Sel_T_phen, model = 'lm')
+ mtext('d)', line = 1, adj = 0, cex = 1.7)
+
+ plot_funnel(meta_obj = mod_Sel_T_morph)
+ mtext('e)', line = 1, adj = 0, cex = 1.7)
+
+
+ ## funnel plots for PRC, as Supplementary Fig. S17
+ ## run only if the models were fit
  \dontrun{
-pdf(paste0(folder_name_for_figures, '/FunnelPlots_PRC_FigS17.pdf'),
-    height = 7, width = 14)
-par(mfrow = c(1,3))
+   par(par_ini); par(mfrow = c(1,3))
 
-plot_funnel(meta_obj = mod_T_prc)
-mtext('a)', line = 1, adj = 0, cex = 1.7)
+   plot_funnel(meta_obj = mod_T_prc)
+   mtext('a)', line = 1, adj = 0, cex = 1.7)
 
-plot_funnel(meta_obj = mod_phen_T_prc)
-mtext('b)', line = 1, adj = 0, cex = 1.7)
+   plot_funnel(meta_obj = mod_phen_T_prc)
+   mtext('b)', line = 1, adj = 0, cex = 1.7)
 
-plot_funnel(meta_obj = mod_morph_T_prc)
-mtext('c)', line = 1, adj = 0, cex = 1.7)
-dev.off()
+   plot_funnel(meta_obj = mod_morph_T_prc)
+   mtext('c)', line = 1, adj = 0, cex = 1.7)
 }
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-####           Supplementary: temperature over years VS                ####
-####                    study duration VS first year                   ####
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+ #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+ ####           Supplementary: temperature over years VS                ####
+ ####                    study duration VS first year                   ####
+ #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-## make sure the model is fitted before running this model
+ ## make sure the model is fitted before running this model
  \dontrun{
- plot_eff_dur_firstY(data = dat_Clim_prc, meta_obj = mod_T_prc,
-                     pdf_basename = paste0(folder_name_for_figures,
-                     '/Teff_NumYr_FigS5'))
+   plot_eff_dur_firstY(data = dat_Clim_prc, meta_obj = mod_T_prc)
  }
 
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
-####              Prepare Supplementary Tables                           ####
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+ #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+ ####              Prepare Supplementary Tables                          ####
+ #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-# a list of models
-# can only be run if all the models were fitted,
-# some of which are time-consuming to fit
+ # a list of models
+ # can only be run if all the models were fitted,
+ # some of which are time-consuming to fit
  \dontrun{
-mod_list <- list(mod_T_prcs, mod_phen_T_prcs, mod_phen_T_prcs_Type,
-                 mod_morph_T_prcs, mod_morph_T_prcs_Type, mod_Sel_T_phen,
-                 mod_Sel_T_phen_Fitn, mod_Sel_T_phen_Gener, mod_Sel_T_morph,
-                 mod_Sel_T_morph_Fitn, mod_Sel_T_morph_Gener, mod_Prec_prcs,
-                 mod_phen_Prec_prcs, mod_Sel_Prec_phen, mod_Sel_Prec_phen_Fitn,
-                 mod_Sel_Prec_phen_Gener, mod_T_prc, mod_phen_T_prc,
-                 mod_phen_T_prc_Taxon, mod_phen_T_prc_Type, mod_morph_T_prc,
-                 mod_morph_T_prc_Taxon, mod_morph_T_prc_Type,
-                 mod_morph_T_prc_Therm, mod_Prec_prc, mod_phen_Prec_prc,
-                 mod_phen_Prec_prc_Taxon)
+   mod_list <- list(mod_T_prcs, mod_phen_T_prcs, mod_phen_T_prcs_Type,
+                  mod_morph_T_prcs, mod_morph_T_prcs_Type, mod_Sel_T_phen,
+                  mod_Sel_T_phen_Fitn, mod_Sel_T_phen_Gener, mod_Sel_T_morph,
+                  mod_Sel_T_morph_Fitn, mod_Sel_T_morph_Gener, mod_Prec_prcs,
+                  mod_phen_Prec_prcs, mod_Sel_Prec_phen, mod_Sel_Prec_phen_Fitn,
+                  mod_Sel_Prec_phen_Gener, mod_T_prc, mod_phen_T_prc,
+                  mod_phen_T_prc_Taxon, mod_phen_T_prc_Type, mod_morph_T_prc,
+                  mod_morph_T_prc_Taxon, mod_morph_T_prc_Type,
+                  mod_morph_T_prc_Therm, mod_Prec_prc, mod_phen_Prec_prc,
+                  mod_phen_Prec_prc_Taxon)
 
-## A table with the effect sizes and their SE
-tab_efSizes_ST1(model_list = mod_list,
-                table_basename = './tables/Supppl_Data1D')
+   ## A table with the effect sizes and their SE
+   tab_efSizes_ST1(model_list = mod_list)
 
-## A table with LRT statistics
-tab_LRT_ST2(model_list = mod_list,
-            table_basename = './tables/Supppl_Data2')
-}
-# a list of models
-mod_list_sens <- list(mod_phen_T_prcs_noOutlier,
-                      mod_Sel_T_phen_noOutlier,
-                      mod_Sel_T_phen_Fitn_noOutlier,
-                      mod_Sel_T_phen_Gener_noOutlier,
-                      mod_phen_T_prcs_noMammal,
-                      mod_Sel_T_phen_noMammal,
-                      mod_Sel_T_phen_Fitn_noMammal,
-                      mod_Sel_T_phen_Gener_noMammal,
-                      mod_phen_T_prcs_noBoth,
-                      mod_Sel_T_phen_noBoth,
-                      mod_Sel_T_phen_Fitn_noBoth,
-                      mod_Sel_T_phen_Gener_noBoth)
+   ## A table with LRT statistics
+   tab_LRT_ST2(model_list = mod_list)
+ }
+ # a list of models
+ mod_list_sens <- list(mod_phen_T_prcs_noOutlier,
+                       mod_Sel_T_phen_noOutlier,
+                       mod_Sel_T_phen_Fitn_noOutlier,
+                       mod_Sel_T_phen_Gener_noOutlier,
+                       mod_phen_T_prcs_noMammal,
+                       mod_Sel_T_phen_noMammal,
+                       mod_Sel_T_phen_Fitn_noMammal,
+                       mod_Sel_T_phen_Gener_noMammal,
+                       mod_phen_T_prcs_noBoth,
+                       mod_Sel_T_phen_noBoth,
+                       mod_Sel_T_phen_Fitn_noBoth,
+                       mod_Sel_T_phen_Gener_noBoth)
 
-tab_efSizes_ST4(model_list = mod_list_sens,
-            table_basename = './tables/EffectSizesSens_SupplTable2')
+ tab_efSizes_ST4(model_list = mod_list_sens)
 
+ ## a table for the LRT statistics and the variation due to random effects
+ ## for the sensitivity analysis
+ tab_LRT_ST5(model_list = mod_list_sens)
 
-## a table for the LRT statistics and the variation due to random effects
-## for the sensitivity analysis
-tab_LRT_ST5(model_list = mod_list_sens,
-            table_basename = './tables/LRTSens_SupplTable3')
-
-## a table for heterogeneity
-## make sure all models are fitted before running this
+ ## a table for heterogeneity
+ ## make sure all models are fitted before running this
  \dontrun{
-mod_heterogen <- list(mod_T_prcs, mod_phen_T_prcs, mod_morph_T_prcs,
-                      mod_Sel_T_phen, mod_Sel_T_morph, mod_Prec_prcs,
-                      mod_phen_Prec_prcs, mod_Sel_Prec_phen, mod_T_prc,
-                      mod_phen_T_prc, mod_morph_T_prc, mod_Prec_prc,
-                      mod_phen_Prec_prc, mod_phen_T_prcs_noOutlier,
-                      mod_Sel_T_phen_noOutlier, mod_phen_T_prcs_noMammal,
-                      mod_Sel_T_phen_noMammal, mod_phen_T_prcs_noBoth,
-                      mod_Sel_T_phen_noBoth)
-tab_heterog(model_list = mod_heterogen,
-            table_basename = './tables/Heterogen_SupplTable1')
-}
+  mod_heterogen <- list(mod_T_prcs, mod_phen_T_prcs, mod_morph_T_prcs,
+                        mod_Sel_T_phen, mod_Sel_T_morph, mod_Prec_prcs,
+                        mod_phen_Prec_prcs, mod_Sel_Prec_phen, mod_T_prc,
+                        mod_phen_T_prc, mod_morph_T_prc, mod_Prec_prc,
+                        mod_phen_Prec_prc, mod_phen_T_prcs_noOutlier,
+                        mod_Sel_T_phen_noOutlier, mod_phen_T_prcs_noMammal,
+                        mod_Sel_T_phen_noMammal, mod_phen_T_prcs_noBoth,
+                        mod_Sel_T_phen_noBoth)
+  tab_heterog(model_list = mod_heterogen,)
+ }
 
 }
 \references{
-Radchuk et al. (2018) Animals respond to climate change by adaptive shifts in
-phenological traits. In review.
+Radchuk et al. (2019) Adaptive responses of animals to climate change
+are most likely insufficient". Nature Communications.
 }
 \keyword{package}
