@@ -38,7 +38,7 @@ in the paper.
  #~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~#
  nb_cores <- 2L ## increase the number for using more cores
  digit <- 3L
- dev.off(); par_ini <- par(no.readonly = TRUE) ## default parameters for display
+ par_ini <- par(no.readonly = TRUE) ## default parameters for display
 
 
 
