@@ -4,6 +4,7 @@
 #' the function \code{\link[openxlsx:write.xlsx]{write.xlsx}} of the package \pkg{openxlsx}.
 #'
 #' @inheritParams parameters_definition
+#' @param  table_basename A string indicating the base name for the file to be created.
 #' @return The table (but the return is invisible).
 #' @export
 #'
