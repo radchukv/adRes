@@ -759,7 +759,7 @@
 #'  # to exclude studies with < 11 years
 #'  num_years <- dat_PhenT_ab %>%
 #'               dplyr::group_by(., id) %>%
-#'               dplyr::summarise(num = n())
+#'               dplyr::summarise(num = dplyr::n())
 #'
 #'  num_years <- num_years[num_years$num > 10, ]
 #'  dat_PhenT_ab <- dat_PhenT_ab[dat_PhenT_ab$id %in% num_years$id, ]
