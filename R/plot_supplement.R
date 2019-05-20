@@ -24,7 +24,7 @@ plot_funnel <- function(meta_obj, model = 'rma'){
   meta_data <- meta_obj$ef_sizes
   glob <- meta_obj$meta_res$global_slope
   test_res <- metafor::regtest(x = meta_data$slope, vi = meta_data$SE_slope^2,
-                               ret.fit = T, model =  model)
+                               ret.fit = TRUE, model =  model)
 
 
   ## specifying the main depending on type of the data
