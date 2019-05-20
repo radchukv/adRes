@@ -39,7 +39,7 @@ dat_sel_phen <- prepare_data(data = dat_Sel,
                              temperature = TRUE, precipitation = FALSE,
                              phenology = TRUE, morphology = FALSE)
 test_sel <- extract_effects_all_ids(data = dat_sel_phen,
-                                    condition = '3', nb_cores = 4L)
+                                    condition = '3', nb_cores = nb_cores)
 test_meta_sel <- fit_meta(test_sel)
 prepare_labels(meta_obj = test_meta_sel,
                labels = c(traits = TRUE,

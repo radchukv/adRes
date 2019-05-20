@@ -40,11 +40,12 @@ obtained.
 }
 \examples{
 \dontrun{
+nb_cores <- 2L ## increase the number for using more cores
 dat_sel_phen <- prepare_data(data = dat_Sel,
                              temperature = TRUE, precipitation = FALSE,
                              phenology = TRUE, morphology = FALSE)
 test_sel <- extract_effects_all_ids(data = dat_sel_phen,
-                                    condition = '3', nb_cores = 4L)
+                                    condition = '3', nb_cores = nb_cores)
 test_meta_sel <- fit_meta(test_sel)
 test_meta_sel_Fitn <- fit_meta(test_sel, fixed = 'Fitness_Categ')
 
@@ -53,7 +54,7 @@ dat_T_phen <- prepare_data(data = dat_Trait,
                            temperature = TRUE, precipitation = FALSE,
                            phenology = TRUE, morphology = FALSE)
 test_T_phen <- extract_effects_all_ids(data = dat_T_phen,
-                                      condition = '2', nb_cores = 4L)
+                                      condition = '2', nb_cores = nb_cores)
 test_meta_T_phen <- fit_meta(test_T_phen)
 test_meta_T_phen_Taxon <- fit_meta(test_T_phen, fixed = 'Taxon')
 }

@@ -31,25 +31,26 @@ by calling the function \code{\link{extract_effects}} on each study.
 }
 \examples{
 \dontrun{
+nb_cores <- 2L ## increase the number for using more cores
 dat_clim <- prepare_data(data = dat_Clim, temperature = TRUE,
                          precipitation = FALSE,
                          phenology = TRUE, morphology = TRUE)
 test <- extract_effects_all_ids(data = dat_clim,
-                                condition = "1", nb_cores = 4L)
+                                condition = "1", nb_cores = nb_cores)
 head(test)
 
 dat_sel_phen <- prepare_data(data = dat_Sel, temperature = TRUE,
                              precipitation = FALSE,
                              phenology = TRUE, morphology = FALSE)
 test_sel <- extract_effects_all_ids(data = dat_sel_phen,
-                                    condition = "3", nb_cores = 4L)
+                                    condition = "3", nb_cores = nb_cores)
 
 
 dat_T_Trait <- prepare_data(data = dat_Trait, temperature = TRUE,
                             precipitation = FALSE,
                             phenology = TRUE, morphology = FALSE)
 test_Trait <- extract_effects_all_ids(data = dat_T_Trait,
-                                      condition = "2", nb_cores = 4L)
+                                      condition = "2", nb_cores = nb_cores)
 }
 
 }

@@ -66,22 +66,23 @@ be fitted with an intercept only to assess the global effect size across the stu
 or with a specified fixed effect.
 }
 \examples{
+nb_cores <- 2L ## increase the number for using more cores
 meta_Sel_phen <- fit_all(data = dat_Sel, temperature = TRUE,
                          precipitation = FALSE,
                          phenology = TRUE, morphology = FALSE,
-                         condition = '3', nb_cores = 4L,
+                         condition = '3', nb_cores = nb_cores,
                          rand_trait = FALSE, fixed = NULL, digit = 3)
 
 meta_Sel_morph <- fit_all(data = dat_Sel,
                          temperature = TRUE, precipitation = FALSE,
                          phenology = FALSE, morphology = TRUE,
-                         condition = '3', nb_cores = 4L,
+                         condition = '3', nb_cores = nb_cores,
                          rand_trait = FALSE, fixed = NULL, digit = 3)
 
 meta_Sel_phen_Fitn <- fit_all(data = dat_Sel,
                               temperature = TRUE, precipitation = FALSE,
                               phenology = TRUE, morphology = FALSE,
-                              condition = '3', nb_cores = 4L,
+                              condition = '3', nb_cores = nb_cores,
                               rand_trait = FALSE,
                               fixed = 'Fitness_Categ', digit = 3)
 
