@@ -3,6 +3,7 @@
 ^data-raw$
 ^examples$
 ^figures$
+^Rcheck$
 ^tables
 ^subl*
 ^\./data/mod_T_prc\.rda$
