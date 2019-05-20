@@ -13,6 +13,8 @@ Description: This R package aims at providing the data and documenting the
     Nature Communications (2019). This package has not been conceived for 
     general use. It serves to document the steps of our analysis.
 License: GPL (>= 2)
+URL: https://github.com/radchukv/adRes
+BugReports: https://github.com/radchukv/adRes/issues
 Encoding: UTF-8
 LazyData: true
 Depends:
