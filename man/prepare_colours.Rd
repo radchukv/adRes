@@ -20,7 +20,7 @@ an internal function used by \code{\link{plot_forest}}.
 }
 \examples{
 \dontrun{
-nb_cores <- min(c(parallel::detectCores(), 10))
+nb_cores <- 2L
 meta_Sel_phen <- fit_all(data = dat_Sel,
                          temperature = TRUE, precipitation = FALSE,
                          phenology = TRUE, morphology = FALSE,

@@ -19,7 +19,7 @@ Plots a funnel plot to assess the potential publication bias.
 Plots a funnel plot for the inspection of the potential publication bias
 }
 \examples{
-nb_cores <- min(c(parallel::detectCores(), 10))
+nb_cores <- 2L
 mod_T_prcs <- fit_all(data = dat_Clim,
                       temperature = TRUE, precipitation = FALSE,
                       phenology = TRUE, morphology = TRUE,

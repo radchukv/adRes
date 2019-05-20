@@ -23,7 +23,7 @@
 #' returned (invisibly).
 #'
 #' @examples
-#' nb_cores <- min(c(parallel::detectCores(), 10))
+#' nb_cores <- 2L
 #' meta_Trait_phen <- fit_all(data = dat_Trait, temperature = TRUE,
 #'                            precipitation = FALSE, phenology = TRUE,
 #'                            morphology = FALSE, condition = '2',

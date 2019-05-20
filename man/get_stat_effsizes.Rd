@@ -22,7 +22,7 @@ A dataframe with three columns: 'chi2_LR', 'df' and 'p_value' if the specified s
 Extracts statistics of interest or effect sizes for a specified list of random-effects meta-analytical models
 }
 \examples{
-nb_cores <- min(c(parallel::detectCores(), 10))
+nb_cores <- 2L
 mod_T_prcs <- fit_all(data = dat_Clim,
                       temperature = TRUE, precipitation = FALSE,
                       phenology = TRUE, morphology = TRUE,

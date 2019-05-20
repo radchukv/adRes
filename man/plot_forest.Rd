@@ -51,7 +51,7 @@ the first one, otherwise the name of the first two.} If the label is set to
 TRUE (default), it will be displayed on the plot.
 }
 \examples{
-nb_cores <- min(c(parallel::detectCores(), 10))
+nb_cores <- 2L
 meta_Trait_phen <- fit_all(data = dat_Trait, temperature = TRUE,
                            precipitation = FALSE, phenology = TRUE,
                            morphology = FALSE, condition = '2',
