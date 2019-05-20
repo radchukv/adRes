@@ -7,10 +7,10 @@ The package was conceived to document the analyses presented in the above-mentio
 
 # Installation
 
-The recommended way to install the **adRes** package is to use `install_github` function from **devtools** package, available from CRAN. To install adRes, type:
+The recommended way to install the **adRes** package is to use `install_github` function from **remotes** package, available from CRAN. To install adRes, type:
 
 ```R
-library(devtools)
+library(remotes)
 install_github("radchukv/adRes")
 ```
 
