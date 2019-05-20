@@ -13,7 +13,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' nb_cores <- min(c(parallel::detectCores(), 10))
+#' nb_cores <- 2L
 #' meta_Sel_phen <- fit_all(data = dat_Sel,
 #'                          temperature = TRUE, precipitation = FALSE,
 #'                          phenology = TRUE, morphology = FALSE,
@@ -555,7 +555,7 @@ prepare_slopes <- function(meta_obj1 = NULL,
 #'
 #' @examples
 #' \dontrun{
-#' nb_cores <- min(c(parallel::detectCores(), 10))
+#' nb_cores <- 2L
 #' meta_Sel_phen <- fit_all(data = dat_Sel,
 #'                          temperature = TRUE, precipitation = FALSE,
 #'                          phenology = TRUE, morphology = FALSE,
