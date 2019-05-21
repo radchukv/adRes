@@ -883,7 +883,7 @@ mod_Sel_T_phen_Gener_noBoth <- fit_all(data = dat_Sel[!
                         mod_Sel_T_phen_noOutlier, mod_phen_T_prcs_noMammal,
                         mod_Sel_T_phen_noMammal, mod_phen_T_prcs_noBoth,
                         mod_Sel_T_phen_noBoth)
-  tab_heterog(model_list = mod_heterogen,)
+  tab_heterog(model_list = mod_heterogen)
  }
 
 }
